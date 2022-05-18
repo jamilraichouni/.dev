@@ -29,7 +29,7 @@ MASTER_SECRET = (
 def _attr_value_of_secret(secret: str, option: str) -> t.Optional[str]:
     if option in (
         "bookmark",
-        "pdf",
+        "file",
         "url",
     ):
         attr_name = "URL"
@@ -93,12 +93,18 @@ def select_secret(option: str) -> t.Optional[str]:
         return None
     items = [i for i in stdout.decode().splitlines() if not i.endswith("/")]
     if items:
-        if option == "bookmark":
-            items = [
-                item
-                for item in items
-                if item.startswith("Assets/Bookmarks/") and not item.endswith("[empty]")
-            ]
+        category = None
+        if option in ("bookmark", "password", "user"):
+            category = "Bookmarks"
+        elif option == "file":
+            category = "Files"
+        if category is None:
+            return None
+        items = [
+            item
+            for item in items
+            if item.startswith(f"Assets/{category}/") and not item.endswith("[empty]")
+        ]
     fzf = FzfPrompt(FZF_EXE)
     secret = fzf.prompt(items)
     if secret:
@@ -121,13 +127,14 @@ def main(args: list[str]) -> t.Optional[str]:
         return _error("Invalid number of arguments passed to kitten!")
     elif (option := args[1].lower().strip()) not in (
         "bookmark",
+        "file",
         "password",
         "url",
         "user",
     ):
         return _error(
             f"Invalid argument '{args[1]}' passed to kitten. "
-            "Expecting one out of 'bookmark', 'password', 'url', 'user'."
+            "Expecting one out of 'bookmark', 'file', 'password', 'url', 'user'."
         )
     if not Path(FZF_EXE).exists():
         _error(f"Cannot find FZF at '{FZF_EXE}'!")
@@ -150,6 +157,15 @@ def handle_result(
     option = args[1].lower().strip()
     if option == "bookmark":
         webbrowser.open(answer, autoraise=True)
+    elif option == "file":
+        subprocess.check_call(
+            [
+                "open",
+                "-a",
+                "Preview.app",
+                f"{str(Path.home() / 'My Drive/assets')}/{answer}",
+            ]
+        )
     else:
         if boss is None:
             return
