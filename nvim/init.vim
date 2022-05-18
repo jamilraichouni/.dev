@@ -182,162 +182,171 @@ endfunction
 
 " COMMON EVENTS ------------------------------------------------------------------------
 autocmd BufEnter * call SmartInsert()
-autocmd BufNewFile,BufReadPost *.aird,*.bash*,bash_*,*.css,*.html,*.js,*.xml,*.reqif,*.zsh*,zsh_* call SetIndentWidth(2)
-autocmd BufNewFile,BufReadPost *.md call SetIndentWidth(4)
+autocmd BufNewFile,BufReadPost *.aird,*.bash*,bash_*,*.css,*.html,*.js,*.md,*.reqif,*.xml,*.zsh*,zsh_* call SetIndentWidth(2)
 autocmd BufNewFile,BufReadPost *.csv setlocal filetype=csv
 autocmd BufNewFile,BufReadPost *.py call SetupPython()
+autocmd BufReadPost builddesc*.yml setlocal foldmethod=indent
 autocmd BufReadPost *.json setlocal foldnestmax=1 foldmethod=indent
 autocmd BufReadPost *.lua,*.py call SetupFolding()
-autocmd BufReadPost *.reqif setlocal filetype=xml syntax=xml
-autocmd BufReadPost .bash* setlocal syntax=sh
-autocmd BufReadPost init.vim,plugins.lua setlocal foldmethod=marker
-autocmd BufReadPost lsp.log setlocal wrap
-autocmd BufWritePost *.snippets CmpUltisnipsReloadSnippets
-autocmd BufWritePost */jarvim/**/*.py UpdateRemoteplugins
-autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-if has("nvim")
-  autocmd TermOpen * setlocal colorcolumn=0 nonumber norelativenumber | startinsert!
-  autocmd TermClose * call feedkeys("i")
-endif
-" FILETYPE EVENTS ----------------------------------------------------------------------
-autocmd FileType Trouble setlocal wrap
-" }}}
-" Keymaps {{{
-let mapleader=","
+    autocmd BufReadPost *.reqif setlocal filetype=xml syntax=xml
+    autocmd BufReadPost .bash* setlocal syntax=sh
+    autocmd BufReadPost init.vim,plugins.lua setlocal foldmethod=marker
+    autocmd BufReadPost lsp.log setlocal wrap
+    autocmd BufWritePost *.snippets CmpUltisnipsReloadSnippets
+    autocmd BufWritePost */jarvim/**/*.py UpdateRemoteplugins
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    if has("nvim")
+      autocmd TermOpen * setlocal colorcolumn=0 nonumber norelativenumber | startinsert!
+      autocmd TermClose * call feedkeys("i")
+    endif
+    " FILETYPE EVENTS ----------------------------------------------------------------------
+    autocmd FileType Trouble setlocal wrap
+    " }}}
+    " Keymaps {{{
+    let mapleader=","
 
-" Disable arrow keys in normal mode:
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-nnoremap <up> <nop>
-nnoremap <down> <nop>
+    " Disable arrow keys in normal mode:
+    nnoremap <left> <nop>
+    nnoremap <right> <nop>
+    nnoremap <up> <nop>
+    nnoremap <down> <nop>
 
-" Disable arrow keys in visual mode:
-vnoremap <left> <nop>
-vnoremap <right> <nop>
-vnoremap <up> <nop>
-vnoremap <down> <nop>
+    " Disable arrow keys in visual mode:
+    vnoremap <left> <nop>
+    vnoremap <right> <nop>
+    vnoremap <up> <nop>
+    vnoremap <down> <nop>
 
-" leave insert mode of terminal as it is in vim:
-tnoremap <c-w>N <c-\><c-n>
-" tnoremap <c-r> <nop>
+    " leave insert mode of terminal as it is in vim:
+    tnoremap <c-w>N <c-\><c-n>
+    " tnoremap <c-r> <nop>
 
-" Clear search highlighting:
-nnoremap <leader>, :noh<cr>
+    " Clear search highlighting:
+    nnoremap <leader>, :noh<cr>
 
-" line numbers:
-noremap <silent><leader>tt :call ToggleNumber()<cr>
-noremap <silent><leader>rr :call ToggleRelativeNumber()<cr>
-" Register and load remote plugins:
-nnoremap <leader>uu :UpdateRemoteplugins<cr>
+    " line numbers:
+    noremap <silent><leader>tt :call ToggleNumber()<cr>
+    noremap <silent><leader>rr :call ToggleRelativeNumber()<cr>
+    " Register and load remote plugins:
+    nnoremap <leader>uu :UpdateRemoteplugins<cr>
 
-" Edit specific files:
-nnoremap <leader>doc :call OpenDoc()<cr>
-nnoremap <leader>erc :e $DEVHOME/zsh/zsh_all<cr>
-nnoremap <leader>ewt :e $HOME/repos/finances/data/working_times.csv<cr>
-nnoremap <leader>init :e $HOME/.config/nvim/init.vim<cr>
-nnoremap <leader>plug :e $HOME/.config/nvim/lua/plugins.lua<cr>
-nnoremap <leader>lsp :e $HOME/.config/nvim/lua/config/nvim-lspconfig.lua<cr>
-nnoremap <leader>theme :e $HOME/.config/nvim/lua/config/vim-code-dark.lua<cr>
+    " Edit specific files:
+    nnoremap <leader>doc :call OpenDoc()<cr>
+    nnoremap <leader>erc :e $DEVHOME/zsh/zsh_all<cr>
+    nnoremap <leader>ewt :e $HOME/repos/finances/data/working_times.csv<cr>
+    nnoremap <leader>init :e $HOME/.config/nvim/init.vim<cr>
+    nnoremap <leader>plug :e $HOME/.config/nvim/lua/plugins.lua<cr>
+    nnoremap <leader>lsp :e $HOME/.config/nvim/lua/config/nvim-lspconfig.lua<cr>
+    nnoremap <leader>theme :e $HOME/.config/nvim/lua/config/vim-code-dark.lua<cr>
 
-" resize window:
-nnoremap <left> :vertical resize -5<cr>
-nnoremap <right> :vertical resize +5<cr>
-nnoremap <up> :resize +5<cr>
-nnoremap <down> :resize -5<cr>
+    " resize window:
+    nnoremap <silent><left> :vertical resize -5<cr>
+    nnoremap <silent><right> :vertical resize +5<cr>
+    nnoremap <silent><up> :resize +5<cr>
+    nnoremap <silent><down> :resize -5<cr>
 
-" Source zsh config:
-nnoremap <leader>sinit :source $HOME/.config/nvim/init.vim<cr>
-nnoremap <leader>src :!source $HOME/.zshrc<cr>
+    " Source zsh config:
+    nnoremap <leader>sinit :source $HOME/.config/nvim/init.vim<cr>
+    nnoremap <leader>src :!source $HOME/.zshrc<cr>
 
-" Browse specific locations:
-nnoremap <leader>cc <cmd>find /Users/jamilraichouni/repos/cookiecutters/python/*cookiecutter.PROJECT_SLUG*<cr>
+    " Browse specific locations:
+    nnoremap <leader>cc <cmd>find /Users/jamilraichouni/repos/cookiecutters/python/*cookiecutter.PROJECT_SLUG*<cr>
 
-" Completion
-inoremap <c-space> <c-x><c-o>
-inoremap <c-@> <c-space>
+    " Completion
+    inoremap <c-space> <c-x><c-o>
+    inoremap <c-@> <c-space>
 
-" Folding
-nnoremap <silent><leader>f1 <cmd>%foldclose!<cr>
-nnoremap <silent><leader>f0 <cmd>%foldopen!<cr>
+    " Folding
+    nnoremap <silent><leader>f1 <cmd>%foldclose<cr>
+    nnoremap <silent><leader>f0 <cmd>%foldopen!<cr>
 
-" Terminal
-nnoremap <silent><leader>tt <cmd>terminal<cr>
-nnoremap <silent><leader>tj <cmd>new +terminal<cr>
-nnoremap <silent><leader>tl <cmd>vnew +terminal<cr>
+    " terminal
+    nnoremap <silent><leader>tt <cmd>terminal<cr>
+    nnoremap <silent><leader>th <cmd>leftabove vnew +terminal<cr>
+    nnoremap <silent><leader>tj <cmd>new +terminal<cr>
+    nnoremap <silent><leader>tk <cmd>aboveleft new +terminal<cr>
+    nnoremap <silent><leader>tl <cmd>vnew +terminal<cr>
 
-
-" LSP (maps: https://github.com/neovim/nvim-lspconfig#suggested-configuration)
-nnoremap <silent><leader>lf <cmd>lua vim.lsp.buf.formatting()<cr>
-nnoremap <silent><leader>ld <cmd>lua vim.lsp.buf.definition()<cr>
-nnoremap <silent><leader>lt <cmd>TroubleToggle document_diagnostics<cr>
-nnoremap <silent><leader>lh <cmd>lua vim.lsp.buf.hover()<cr>
-nnoremap <silent><leader>lr <cmd>lua vim.lsp.buf.references()<cr>
-nnoremap <silent><leader>li <cmd>lua vim.lsp.buf.implementation()<cr>
-nnoremap <silent><leader>lp <cmd>lua vim.diagnostic.goto_prev{wrap=false,popup_opts={border="single"}}<cr>
-nnoremap <silent><leader>ln <cmd>lua vim.diagnostic.goto_next{wrap=false,popup_opts={border="single"}}<cr>
-
-" vimspector:
-" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
-nmap <leader>dr <cmd>VimspectorReset<cr>
-
-" for normal mode - the word under the cursor
-nmap <leader>di <plug>VimspectorBalloonEval
-" for visual mode, the visually selected text
-xmap <leader>di <plug>VimspectorBalloonEval
-
-" " Debug Adapter Protocol client (DAP) https://github.com/mfussenegger/nvim-dap
-" " see :h dap-mappings or :h dap.txt
-
-" " f9 or <leader>bb
-" nnoremap <silent><f9> :lua require"dap".toggle_breakpoint()<cr>
-" " f5 or <leader>br
-" nnoremap <silent><f5> :lua require"dap".continue()<cr>
-" " f6 or <leader>brl
-" nnoremap <silent><f6> :lua require"dap".run_last()<cr>
-" " <leader><f5> or <leader>b<Esc>
-" nnoremap <silent><leader><f5> :lua require"dap".terminate()<cr>
-
-" " f10 or <leader>bn
-" nnoremap <silent><f10> :lua require"dap".step_over()<cr>
-" " f11 or <leader>bs
-" nnoremap <silent><f11> :lua require"dap".step_into()<cr>
-" " <leader><f11> or <leader>bu ("u" comes from "up" [pdb])
-" nnoremap <silent><leader><f11> :lua require"dap".step_out()<cr>
+    " ipython
+    nnoremap <silent><leader>ii <cmd>terminal ipython<cr>
+    nnoremap <silent><leader>ih <cmd>leftabove vnew <bar> terminal ipython<cr>
+    nnoremap <silent><leader>ij <cmd>new <bar> terminal ipython<cr>
+    nnoremap <silent><leader>ik <cmd>aboveleft new <bar> terminal ipython<cr>
+    nnoremap <silent><leader>il <cmd>vnew <bar> terminal ipython<cr>
 
 
-" nnoremap <silent><leader>bt :lua require"dap".repl.toggle()<cr>
+    " LSP (maps: https://github.com/neovim/nvim-lspconfig#suggested-configuration)
+    nnoremap <silent><leader>lf <cmd>lua vim.lsp.buf.formatting()<cr>
+    nnoremap <silent><leader>ld <cmd>lua vim.lsp.buf.definition()<cr>
+    nnoremap <silent><leader>lt <cmd>TroubleToggle document_diagnostics<cr>
+    nnoremap <silent><leader>lh <cmd>lua vim.lsp.buf.hover()<cr>
+    nnoremap <silent><leader>lr <cmd>lua vim.lsp.buf.references()<cr>
+    nnoremap <silent><leader>li <cmd>lua vim.lsp.buf.implementation()<cr>
+    nnoremap <silent><leader>lp <cmd>lua vim.diagnostic.goto_prev{wrap=false,popup_opts={border="single"}}<cr>
+    nnoremap <silent><leader>ln <cmd>lua vim.diagnostic.goto_next{wrap=false,popup_opts={border="single"}}<cr>
 
-" nnoremap <silent><leader>. :lua require"dapui".toggle()<cr>
-" nnoremap <silent><leader>bfs :lua require"dapui".float_element("scopes", { enter = true, width = 80, height = 80 })<cr>
-" nnoremap <silent><leader>bff :lua require"dapui".float_element(require"dap.ui.widgets".frames)<cr>
+    " vimspector:
+    " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+    nmap <leader>dr <cmd>VimspectorReset<cr>
 
-" nnoremap <silent><leader>bB :lua require"dap".list_breakpoints()<cr>
-" nnoremap <silent><leader>bc :lua require"dap".set_breakpoint(vim.fn.input("Condition: "))<cr>
-" nnoremap <silent><leader>bl :lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<cr>
-" nnoremap <silent><leader>bi :lua require"dap.ui.widgets".hover()<cr>
+    " for normal mode - the word under the cursor
+    nmap <leader>di <plug>VimspectorBalloonEval
+    " for visual mode, the visually selected text
+    xmap <leader>di <plug>VimspectorBalloonEval
 
-" Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files hidden=true ignore=.git<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
-nnoremap <leader>fm <cmd>Telescope vim_bookmarks<cr>
+    " " Debug Adapter Protocol client (DAP) https://github.com/mfussenegger/nvim-dap
+    " " see :h dap-mappings or :h dap.txt
 
-nnoremap <leader>defined <cmd>lua require('telescope.builtin').grep_string({search='"status": "DEFINED"', search_dirs={"jobs"}, word_match="-w", prompt_title="FAILED jobs"})<cr>
-nnoremap <leader>failed <cmd>lua require('telescope.builtin').grep_string({search='"status": "FAILED"', search_dirs={"jobs"}, word_match="-w", prompt_title="FAILED jobs"})<cr>
-nnoremap <leader>success <cmd>lua require('telescope.builtin').grep_string({search='"status": "SUCCESS"', search_dirs={"jobs"}, word_match="-w", prompt_title="SUCCESS jobs"})<cr>
-nnoremap <leader>trace <cmd>lua require('telescope.builtin').grep_string({search='Trace', search_dirs={"jobs"}})<cr>
+    " " f9 or <leader>bb
+    " nnoremap <silent><f9> :lua require"dap".toggle_breakpoint()<cr>
+    " " f5 or <leader>br
+    " nnoremap <silent><f5> :lua require"dap".continue()<cr>
+    " " f6 or <leader>brl
+    " nnoremap <silent><f6> :lua require"dap".run_last()<cr>
+    " " <leader><f5> or <leader>b<Esc>
+    " nnoremap <silent><leader><f5> :lua require"dap".terminate()<cr>
 
-nnoremap <silent><leader>gla <cmd>lua require("jar.telescope").my_git_commits()<cr>
-nnoremap <silent><leader>glc <cmd>lua require("jar.telescope").my_git_bcommits()<cr>
-nnoremap <silent><leader>gs <cmd>lua require("jar.telescope").my_git_status()<cr>
+    " " f10 or <leader>bn
+    " nnoremap <silent><f10> :lua require"dap".step_over()<cr>
+    " " f11 or <leader>bs
+    " nnoremap <silent><f11> :lua require"dap".step_into()<cr>
+    " " <leader><f11> or <leader>bu ("u" comes from "up" [pdb])
+    " nnoremap <silent><leader><f11> :lua require"dap".step_out()<cr>
 
-" Bookmarks:
-nnoremap <silent>ma <cmd>:BookmarkAnnotate<cr>
-nnoremap <silent>ml <cmd>:BookmarkShowAll<cr>
 
-" misc:
-nnoremap <c-p> :bprevious<cr>
-nnoremap <c-n> :bnext<cr>
-" }}}
+    " nnoremap <silent><leader>bt :lua require"dap".repl.toggle()<cr>
+
+    " nnoremap <silent><leader>. :lua require"dapui".toggle()<cr>
+    " nnoremap <silent><leader>bfs :lua require"dapui".float_element("scopes", { enter = true, width = 80, height = 80 })<cr>
+    " nnoremap <silent><leader>bff :lua require"dapui".float_element(require"dap.ui.widgets".frames)<cr>
+
+    " nnoremap <silent><leader>bB :lua require"dap".list_breakpoints()<cr>
+    " nnoremap <silent><leader>bc :lua require"dap".set_breakpoint(vim.fn.input("Condition: "))<cr>
+    " nnoremap <silent><leader>bl :lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<cr>
+    " nnoremap <silent><leader>bi :lua require"dap.ui.widgets".hover()<cr>
+
+    " Find files using Telescope command-line sugar.
+    nnoremap <leader>ff <cmd>Telescope find_files hidden=true ignore=.git<cr>
+    nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+    nnoremap <leader>fb <cmd>Telescope buffers<cr>
+    nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+    nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
+    nnoremap <leader>fm <cmd>Telescope vim_bookmarks<cr>
+
+    nnoremap <leader>defined <cmd>lua require('telescope.builtin').grep_string({search='"status": "DEFINED"', search_dirs={"jobs"}, word_match="-w", prompt_title="FAILED jobs"})<cr>
+    nnoremap <leader>failed <cmd>lua require('telescope.builtin').grep_string({search='"status": "FAILED"', search_dirs={"jobs"}, word_match="-w", prompt_title="FAILED jobs"})<cr>
+    nnoremap <leader>success <cmd>lua require('telescope.builtin').grep_string({search='"status": "SUCCESS"', search_dirs={"jobs"}, word_match="-w", prompt_title="SUCCESS jobs"})<cr>
+    nnoremap <leader>trace <cmd>lua require('telescope.builtin').grep_string({search='Trace', search_dirs={"jobs"}})<cr>
+
+    nnoremap <silent><leader>gla <cmd>lua require("jar.telescope").my_git_commits()<cr>
+    nnoremap <silent><leader>glc <cmd>lua require("jar.telescope").my_git_bcommits()<cr>
+    nnoremap <silent><leader>gs <cmd>lua require("jar.telescope").my_git_status()<cr>
+
+    " Bookmarks:
+    nnoremap <silent>ma <cmd>:BookmarkAnnotate<cr>
+    nnoremap <silent>ml <cmd>:BookmarkShowAll<cr>
+
+    " misc:
+    nnoremap <c-p> :bprevious<cr>
+    nnoremap <c-n> :bnext<cr>
+    " }}}

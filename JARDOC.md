@@ -6,7 +6,9 @@
   - [Environment setup](#environment-setup)
     - [Fonts](#fonts)
     - [Tools](#tools)
-      - [`Neovim`](#neovim)
+      - [`Nvim`](#neovim)
+      - [Reasons for Nvim](#reasons-for-nvim)
+      - [Reasons for VIM](#reasons-for-vim)
       - [`fzf`](#fzf)
 
 ## Development
@@ -38,7 +40,7 @@ see:
 
 #### Tools
 
-##### `Neovim`
+##### `Nvim`
 
 ###### Recipe: Filter lines into # buffer
 
@@ -54,6 +56,26 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
+##### Reasons for Nvim
+
+- Treesitter support !!
+- Good working completion engine `nvim-cmp` that uses the following important sources:
+  - LSP client,
+  - UltiSnips,
+  - Buffer,
+  - File
+
+- Builtin LSP client in Nvim instead of A.L.E.
+- Real Python plugin development in Nvim
+- Lua scripting instead of VimScript only
+- Bigger community, hence possibly more cool plugins etc.
+
+##### Reasons for VIM
+
+- vimspector with nice toolbar
+- Nearly always available on Unix machines
+- Maybe better tested (stability)
+
 ##### `fzf`
 
 <https://github.com/junegunn/fzf>
@@ -65,66 +87,49 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/opt/fzf
 
 ## Todo
 
-Consider:
+- Avoid macos cmd key for `kitty` keymaps
 
-```text
-curl is keg-only, which means it was not symlinked into /usr/local,
-because macOS already provides this software and installing another version in
-parallel can cause all kinds of trouble.
+- Learn use of `netrw`
 
-If you need to have curl first in your PATH, run:
-  echo 'export PATH="/usr/local/opt/curl/bin:$PATH"' >> ~/.zshrc
+- Learn use of `vim-fugitive`
 
-For compilers to find curl you may need to set:
-  export LDFLAGS="-L/usr/local/opt/curl/lib"
-  export CPPFLAGS="-I/usr/local/opt/curl/include"
+- Lint/ format `.toml` files:
+  - <https://www.npmjs.com/package/eslint-plugin-toml>
 
-For pkg-config to find curl you may need to set:
-  export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig"
+- ipython colors for tracebacks of raised exceptions (just try `import dummy`)
 
+- Multiple filter lines
+  use case: count no of build targets in builddesc.yml
 
-zsh completions have been installed to:
-  /usr/local/opt/curl/share/zsh/site-functions
-```
+- light green background for current debugger line
 
-1. Make install script in `.dev` repo that can be called like `curl github.../install.zsh -o install.zsh | zsh`
+- Snippets (translate VSCode -> UltiSnips)
 
-1. Consider `.vimrc` sourcing `init.vim` with `has('nvim')` etc.
+- Snippet or JarVim command to add a new working times entry
 
-1. nvim and language servers etc. in Docker container (also pushed to registry)
-
-1. Learn use of `vim-fugitive`
-
-1. ipython colors for tracebacks of raised exceptions (just try `import dummy`)
-
-1. Multiple filter lines
-   use case: count no of build targets in builddesc.yml
-
-1. light green background for current debugger line
-
-1. Snippets (translate VSCode -> UltiSnips)
-
-1. Snippet or JarVim command to add a new working times entry
-
-1. Document in tagged .txt help files (JarVim plugin)
+- Document in tagged .txt help files (JarVim plugin)
    -> to have everything at hand
 
-## Reasons for NeoVIM
+- Nvim and language servers etc. in Docker container (also pushed to registry)
 
-- Treesitter support !!
-- Really nice completion engine nvim-cmp that uses the following important sources:
+- Consider:
 
-  - LSP client,
-  - UltiSnips,
-  - Buffer
+  ```text
+  curl is keg-only, which means it was not symlinked into /usr/local,
+  because macOS already provides this software and installing another version in
+  parallel can cause all kinds of trouble.
 
-- Builtin LSP client in NVIM instead of A.L.E.
-- Real Python plugin development in NVIM
-- Lua scripting instead of VimScript only
-- Bigger community, hence possibly more cool plugins etc.
+  If you need to have curl first in your PATH, run:
+    echo 'export PATH="/usr/local/opt/curl/bin:$PATH"' >> ~/.zshrc
 
-## Reasons for VIM
+  For compilers to find curl you may need to set:
+    export LDFLAGS="-L/usr/local/opt/curl/lib"
+    export CPPFLAGS="-I/usr/local/opt/curl/include"
 
-- vimspector with nice toolbar
-- Nearly always available on Unix machines
-- Maybe better tested (stability)
+  For pkg-config to find curl you may need to set:
+    export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig"
+
+
+  zsh completions have been installed to:
+    /usr/local/opt/curl/share/zsh/site-functions
+  ```

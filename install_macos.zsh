@@ -4,7 +4,7 @@ which brew > /dev/null 2> /dev/null
 
 echo "Check/ install needed CLI tools..."
 
-for TOOL in curl git rg
+for TOOL in bat curl git git-lfs htop rg tree watch wget
 do
   which $TOOL > /dev/null 2> /dev/null
   [[ $? != 0 ]] && brew install $TOOL
