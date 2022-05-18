@@ -1,0 +1,11 @@
+{
+  "toml": {
+    "lineWidth": 88
+  },
+  "includes": [
+    "**/*.{toml}"
+  ],
+  "plugins": [
+    "https://plugins.dprint.dev/toml-0.5.4.wasm"
+  ]
+}

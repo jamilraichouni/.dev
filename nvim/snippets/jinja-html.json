@@ -1,0 +1,129 @@
+{
+    "jinja (anchor definition)": {
+        "body": [
+            "{{ template.place_anchor(${1:ID_STRING}) }}"
+        ],
+        "description": "Jinja anchor definition {{ ... }}",
+        "prefix": [
+            "jinja (anchor definition)",
+            "anchor definition (jinja)"
+        ]
+    },
+    "jinja (anchor reference link)": {
+        "body": [
+            "{{ template.anchor_href(${1:ID_STRING}, ${2:LABEL}) }}"
+        ],
+        "description": "Jinja anchor reference link {{ ... }}",
+        "prefix": [
+            "jinja (anchor reference link)",
+            "anchor reference link (jinja)"
+        ]
+    },
+    "jinja (comment)": {
+        "body": [
+            "<pre>{# $1 #}</pre>"
+        ],
+        "description": "Jinja comment {# ... #}",
+        "prefix": [
+            "jinja (comment)",
+            "comment (jinja)"
+        ]
+    },
+    "jinja (expression)": {
+        "body": [
+            "{{ $1 }}"
+        ],
+        "description": "Jinja expression {{ ... }}",
+        "prefix": [
+            "jinja (expression)",
+            "expression (jinja)"
+        ]
+    },
+    "jinja (for-loop)": {
+        "body": [
+            "<pre>{% for ${1:ITEM} in ${2:ITEMS} %}</pre>",
+            "    $3",
+            "<pre>{% endfor %}</pre>"
+        ],
+        "description": "Jinja for-loop {% ... %}",
+        "prefix": [
+            "jinja (for-loop)",
+            "for-loop (jinja)"
+        ]
+    },
+    "jinja (if)": {
+        "body": [
+            "<pre>{% if $1 %}</pre>",
+            "    $2",
+            "<pre>{% endif %}</pre>",
+            "$3"
+        ],
+        "description": "Jinja if",
+        "prefix": [
+            "jinja (if)",
+            "if (jinja)"
+        ]
+    },
+    "jinja (if-elif)": {
+        "body": [
+            "<pre>{% if $1 %}</pre>",
+            "    $2",
+            "<pre>{% elif %}</pre>",
+            "    $3",
+            "<pre>{% endif %}</pre>",
+            "$4"
+        ],
+        "description": "Jinja if-elif",
+        "prefix": [
+            "jinja (if-elif)",
+            "if-elif (jinja)"
+        ]
+    },
+    "jinja (if-else)": {
+        "body": [
+            "<pre>{% if $1 %}</pre>",
+            "    $2",
+            "<pre>{% else %}</pre>",
+            "    $3",
+            "<pre>{% endif %}</pre>",
+            "$4"
+        ],
+        "description": "Jinja if-else",
+        "prefix": [
+            "jinja (if-else)",
+            "if-else (jinja)"
+        ]
+    },
+    "jinja (macro)": {
+        "body": [
+            "<pre>{% macro ${1:MACRONAME}() %}</pre>",
+            "    $2",
+            "<pre>{% endmacro %}</pre>"
+        ],
+        "description": "Jinja macro",
+        "prefix": [
+            "jinja (macro)",
+            "macro (jinja)"
+        ]
+    },
+    "jinja (set variable)": {
+        "body": [
+            "<pre>{% set $1 %}</pre>"
+        ],
+        "description": "Jinja set variable {% set ... %}",
+        "prefix": [
+            "jinja (set variable)",
+            "set variable (jinja)"
+        ]
+    },
+    "jinja (statement)": {
+        "body": [
+            "<pre>{% $1 %}</pre>"
+        ],
+        "description": "Jinja statement {% ... %}",
+        "prefix": [
+            "jinja (statement)",
+            "statement (jinja)"
+        ]
+    }
+}

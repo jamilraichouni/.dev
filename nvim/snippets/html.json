@@ -1,0 +1,42 @@
+{
+    // Place your snippets for html here. Each snippet is defined under a snippet name and has a prefix, body and 
+    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+    // same ids are connected.
+    // Example:
+    "mat-card": {
+        "prefix": "mat-card",
+        "body": [
+            "<mat-card>",
+            "  <mat-card-title>",
+            "  </mat-card-title>",
+            "",
+            "  <mat-card-subtitle>",
+            "  </mat-card-subtitle>",
+            "",
+            "  <mat-card-content>",
+            "  </mat-card-content>",
+            "</mat-card>"
+        ],
+        "description": "Angular material (card - content container for text, photos, and actions in the context of a single subject)"
+    },
+    "No-break space": {
+        "prefix": "&nbsp",
+        "body": [
+            "&nbsp;"
+        ],
+        "description": "No-break space"
+    },
+    "ReactiveForm": {
+        "prefix": "form (reactive)",
+        "body": [
+            "<form novalidate",
+            "  (ngSubmit)='save()'",
+            "  [formGroup]='${1:entity}Form'",
+            ">",
+            "  $2",
+            "</form>"
+        ],
+        "description": "Reactive Form"
+    }
+}
