@@ -46,10 +46,69 @@ filetype plugin indent on
 " Set built-in file system explorer to use layout similar to the NERDTree plugin
 let g:netrw_liststyle=3
 " }}}
-lua require('plugins')
+" plugins {{{
+if has("nvim")
+    lua require('plugins')
+else
+    call plug#begin()
+
+    " https://github.com/tomasiser/vim-code-dark
+    plug 'tomasiser/vim-code-dark'
+
+    " https://github.com/tpope/vim-commentary
+    plug 'tpope/vim-commentary'
+
+    " https://github.com/tpope/vim-surround
+    plug 'tpope/vim-surround'
+
+    " https://github.com/MattesGroeger/vim-bookmarks
+    plug 'MattesGroeger/vim-bookmarks'
+
+    " https://github.com/tpope/vim-repeat
+    plug 'tpope/vim-repeat'
+
+    " https://github.com/vim-airline/vim-airline
+    plug 'vim-airline/vim-airline'
+
+    " https://github.com/tpope/vim-fugitive
+    plug 'tpope/vim-fugitive'
+
+    " https://github.com/fladson/vim-kitty
+    plug 'fladson/vim-kitty'
+
+    " https://github.com/airblade/vim-gitgutter
+    plug 'https://github.com/airblade/vim-gitgutter'
+
+    " https://github.com/dense-analysis/ale
+    plug 'https://github.com/dense-analysis/ale'
+
+    " https://github.com/ycm-core/YouCompleteMe
+    " IMPORTANT: I could only build YouCompleteMe via 'YCM_CORES=1 ./install.py --verbose'
+    plug 'ycm-core/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
+
+    plug 'SirVer/ultisnips'
+
+    " https://github.com/iamcco/markdown-preview.nvim
+    plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+    " https://github.com/puremourning/vimspector
+    plug 'puremourning/vimspector'
+
+    " https://github.com/vim-python/python-syntax
+    plug 'vim-python/python-syntax'
+
+    call plug#end()
+    colorscheme codedark
+endif
+" }}}
 " Functions {{{
 " Search literally via command :Search <LITERAL>
 com! -nargs=1 Search :let @/='\V'.escape(<q-args>, '\\')| normal! n
+
+function! OpenDoc()
+  tabnew $DEVHOME/JARDOC.md
+  MarkdownPreview
+endfunction
 
 function! SetupFolding()
     setlocal foldmethod=indent
@@ -85,7 +144,7 @@ endfunction
 
 " https://github.com/neovim/neovim/issues/8816#issuecomment-539224440
 let g:previous_window = -1
-function SmartInsert()
+function! SmartInsert()
   if &buftype == 'terminal'
     if g:previous_window != winnr()
       startinsert
@@ -123,7 +182,8 @@ endfunction
 
 " COMMON EVENTS ------------------------------------------------------------------------
 autocmd BufEnter * call SmartInsert()
-autocmd BufNewFile,BufReadPost *.aird,*.css,*.html,*.js,*.xml,*.reqif call SetIndentWidth(2)
+autocmd BufNewFile,BufReadPost *.aird,*.bash*,bash_*,*.css,*.html,*.js,*.xml,*.reqif,*.zsh*,zsh_* call SetIndentWidth(2)
+autocmd BufNewFile,BufReadPost *.md call SetIndentWidth(4)
 autocmd BufNewFile,BufReadPost *.csv setlocal filetype=csv
 autocmd BufNewFile,BufReadPost *.py call SetupPython()
 autocmd BufReadPost *.json setlocal foldnestmax=1 foldmethod=indent
@@ -133,33 +193,33 @@ autocmd BufReadPost .bash* setlocal syntax=sh
 autocmd BufReadPost init.vim,plugins.lua setlocal foldmethod=marker
 autocmd BufReadPost lsp.log setlocal wrap
 autocmd BufWritePost *.snippets CmpUltisnipsReloadSnippets
-autocmd BufWritePost */jarvim/**/*.py UpdateRemotePlugins
+autocmd BufWritePost */jarvim/**/*.py UpdateRemoteplugins
 autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-autocmd TermOpen * setlocal colorcolumn=0 nonumber norelativenumber | startinsert!
-autocmd TermClose * call feedkeys("i")
-
+if has("nvim")
+  autocmd TermOpen * setlocal colorcolumn=0 nonumber norelativenumber | startinsert!
+  autocmd TermClose * call feedkeys("i")
+endif
 " FILETYPE EVENTS ----------------------------------------------------------------------
 autocmd FileType Trouble setlocal wrap
-
 " }}}
 " Keymaps {{{
 let mapleader=","
 
 " Disable arrow keys in normal mode:
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
 
 " Disable arrow keys in visual mode:
-vnoremap <Left> <Nop>
-vnoremap <Right> <Nop>
-vnoremap <Up> <Nop>
-vnoremap <Down> <Nop>
+vnoremap <left> <nop>
+vnoremap <right> <nop>
+vnoremap <up> <nop>
+vnoremap <down> <nop>
 
 " leave insert mode of terminal as it is in vim:
-tnoremap <c-w>N <C-\><C-n>
-" tnoremap <C-r> <Nop>
+tnoremap <c-w>N <c-\><c-n>
+" tnoremap <c-r> <nop>
 
 " Clear search highlighting:
 nnoremap <leader>, :noh<cr>
@@ -168,15 +228,22 @@ nnoremap <leader>, :noh<cr>
 noremap <silent><leader>tt :call ToggleNumber()<cr>
 noremap <silent><leader>rr :call ToggleRelativeNumber()<cr>
 " Register and load remote plugins:
-nnoremap <leader>uu :UpdateRemotePlugins<cr>
+nnoremap <leader>uu :UpdateRemoteplugins<cr>
 
 " Edit specific files:
-nnoremap <leader>erc :e $HOME/.zshrc<cr>
+nnoremap <leader>doc :call OpenDoc()<cr>
+nnoremap <leader>erc :e $DEVHOME/zsh/zsh_all<cr>
 nnoremap <leader>ewt :e $HOME/repos/finances/data/working_times.csv<cr>
 nnoremap <leader>init :e $HOME/.config/nvim/init.vim<cr>
 nnoremap <leader>plug :e $HOME/.config/nvim/lua/plugins.lua<cr>
 nnoremap <leader>lsp :e $HOME/.config/nvim/lua/config/nvim-lspconfig.lua<cr>
 nnoremap <leader>theme :e $HOME/.config/nvim/lua/config/vim-code-dark.lua<cr>
+
+" resize window:
+nnoremap <left> :vertical resize -5<cr>
+nnoremap <right> :vertical resize +5<cr>
+nnoremap <up> :resize +5<cr>
+nnoremap <down> :resize -5<cr>
 
 " Source zsh config:
 nnoremap <leader>sinit :source $HOME/.config/nvim/init.vim<cr>
@@ -185,17 +252,18 @@ nnoremap <leader>src :!source $HOME/.zshrc<cr>
 " Browse specific locations:
 nnoremap <leader>cc <cmd>find /Users/jamilraichouni/repos/cookiecutters/python/*cookiecutter.PROJECT_SLUG*<cr>
 
-" Completion;
-inoremap <C-Space> <C-x><C-o>
-inoremap <C-@> <C-Space>
+" Completion
+inoremap <c-space> <c-x><c-o>
+inoremap <c-@> <c-space>
 
 " Folding
 nnoremap <silent><leader>f1 <cmd>%foldclose!<cr>
 nnoremap <silent><leader>f0 <cmd>%foldopen!<cr>
 
-" Terminal:
-" nnoremap <silent><leader>tt <cmd>terminal<cr>
-" nnoremap <silent><leader>tl <cmd>wincmd v<cr><cmd>terminal<cr>
+" Terminal
+nnoremap <silent><leader>tt <cmd>terminal<cr>
+nnoremap <silent><leader>tj <cmd>new +terminal<cr>
+nnoremap <silent><leader>tl <cmd>vnew +terminal<cr>
 
 
 " LSP (maps: https://github.com/neovim/nvim-lspconfig#suggested-configuration)
@@ -210,12 +278,12 @@ nnoremap <silent><leader>ln <cmd>lua vim.diagnostic.goto_next{wrap=false,popup_o
 
 " vimspector:
 " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
-nmap <Leader>dr <cmd>VimspectorReset<cr>
+nmap <leader>dr <cmd>VimspectorReset<cr>
 
 " for normal mode - the word under the cursor
-nmap <Leader>di <Plug>VimspectorBalloonEval
+nmap <leader>di <plug>VimspectorBalloonEval
 " for visual mode, the visually selected text
-xmap <Leader>di <Plug>VimspectorBalloonEval
+xmap <leader>di <plug>VimspectorBalloonEval
 
 " " Debug Adapter Protocol client (DAP) https://github.com/mfussenegger/nvim-dap
 " " see :h dap-mappings or :h dap.txt
