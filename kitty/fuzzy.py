@@ -73,7 +73,7 @@ def _error(msg: str) -> None:
     input(f"{msg}\nPress Enter to quit...")
 
 
-def select_secret(option: str) -> t.Optional[str]:
+def _select_keepass_secret(option: str) -> t.Optional[str]:
     """Select secret from any of all KeePassXC entries that have a user name."""
     secret = None
     stdout, stderr = subprocess.Popen(
@@ -136,7 +136,7 @@ def main(args: list[str]) -> t.Optional[str]:
     if not Path(FZF_EXE).exists():
         _error(f"Cannot find FZF at '{FZF_EXE}'!")
         return None
-    if (secret := select_secret(option)) is None:
+    if (secret := _select_keepass_secret(option)) is None:
         return None
     answer = _attr_value_of_secret(secret, option)
     if answer is not None:

@@ -276,14 +276,15 @@ autocmd BufReadPost *.lua,*.py call SetupFolding()
 
 
     " LSP (maps: https://github.com/neovim/nvim-lspconfig#suggested-configuration)
-    nnoremap <silent><leader>lf <cmd>lua vim.lsp.buf.formatting()<cr>
     nnoremap <silent><leader>ld <cmd>lua vim.lsp.buf.definition()<cr>
-    nnoremap <silent><leader>lt <cmd>TroubleToggle document_diagnostics<cr>
+    nnoremap <silent><leader>lf <cmd>lua vim.lsp.buf.formatting()<cr>
     nnoremap <silent><leader>lh <cmd>lua vim.lsp.buf.hover()<cr>
-    nnoremap <silent><leader>lr <cmd>lua vim.lsp.buf.references()<cr>
     nnoremap <silent><leader>li <cmd>lua vim.lsp.buf.implementation()<cr>
-    nnoremap <silent><leader>lp <cmd>lua vim.diagnostic.goto_prev{wrap=false,popup_opts={border="single"}}<cr>
-    nnoremap <silent><leader>ln <cmd>lua vim.diagnostic.goto_next{wrap=false,popup_opts={border="single"}}<cr>
+    nnoremap <silent><leader>lj <cmd>lua vim.diagnostic.goto_next{wrap=false,popup_opts={border="single"}}<cr>
+    nnoremap <silent><leader>lk <cmd>lua vim.diagnostic.goto_prev{wrap=false,popup_opts={border="single"}}<cr>
+    nnoremap <silent><leader>ln <cmd>lua vim.lsp.buf.rename()<cr>
+    nnoremap <silent><leader>lr <cmd>lua vim.lsp.buf.references()<cr>
+    nnoremap <silent><leader>lt <cmd>TroubleToggle document_diagnostics<cr>
 
     " vimspector:
     " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)

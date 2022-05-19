@@ -220,6 +220,7 @@ alias grep='grep --color --exclude-dir=.git --exclude-dir=.svn'
 # export JARVIMDIR=$HOME/repos/jarvim
 alias vd='NVIM_LISTEN_ADDRESS=/tmp/nvim nvim'
 alias vi='nvim'
+alias vis='nvim -S'
 alias vidiff='nvim -d'
 
 # fzf:
