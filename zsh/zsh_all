@@ -77,7 +77,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # JAR configuration
-export LSCOLORS=Exfxcxdxcxegedabageced
+export LSCOLORS=Exfxcxdxcxegedabageced  # https://hdevstudy.tistory.com/52
 
 # PATH:
 export PATH=~/opt:~/opt/bat:~/opt/nvim/bin:$PATH
