@@ -87,28 +87,24 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/opt/fzf
 
 ## Todo
 
-- Avoid macos cmd key for `kitty` keymaps
+- ipython colors for tracebacks of raised exceptions (just try `import dummy`)
+
+- Align cursor shapes in `kitty` and terminal buffer in `(n)vim`
 
 - Learn use of `netrw`
 
 - Learn use of `vim-fugitive`
 
+- Avoid macos cmd key for `kitty` keymaps
+
 - Lint/ format `.toml` files:
   - <https://www.npmjs.com/package/eslint-plugin-toml>
 
-- ipython colors for tracebacks of raised exceptions (just try `import dummy`)
-
-- Multiple filter lines
-  use case: count no of build targets in builddesc.yml
-
-- light green background for current debugger line
-
 - Snippets (translate VSCode -> UltiSnips)
 
-- Snippet or JarVim command to add a new working times entry
+- light green background for current debugger line in `vimspector`
 
-- Document in tagged .txt help files (JarVim plugin)
-   -> to have everything at hand
+- Snippet or JarVim command to add a new working times entry
 
 - Nvim and language servers etc. in Docker container (also pushed to registry)
 

@@ -92,18 +92,15 @@ def select_secret(option: str) -> t.Optional[str]:
         _error(stderr.decode())
         return None
     items = [i for i in stdout.decode().splitlines() if not i.endswith("/")]
-    if items:
-        category = None
-        if option in ("bookmark", "password", "user"):
-            category = "Bookmarks"
-        elif option == "file":
-            category = "Files"
-        if category is None:
-            return None
+    if items and option in (
+        "bookmark",
+        "file",
+    ):
         items = [
             item
             for item in items
-            if item.startswith(f"Assets/{category}/") and not item.endswith("[empty]")
+            if item.startswith(f"Assets/{option.capitalize()}s/")
+            and not item.endswith("[empty]")
         ]
     fzf = FzfPrompt(FZF_EXE)
     secret = fzf.prompt(items)
