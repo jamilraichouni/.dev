@@ -1,4 +1,4 @@
-# JAR Documentation
+# JAt Documentation
 
 ## Contents
 
@@ -47,6 +47,10 @@ see:
 :vimgrep PATTERN %
 :cwindow
 ```
+
+###### Recipe: Upper case inner word: ```gUiw```
+
+###### Recipe: Lower case inner word: ```guiw```
 
 ###### Plugin management with `packer`
 
