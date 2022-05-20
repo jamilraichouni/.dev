@@ -1,0 +1,4 @@
+alias lr u;;d
+alias syspath import sys; _ = [print(p) for p in sys.path]
+alias vars print(""); _ = [print(v) for v in sorted(dir())]; print("")
+alias wi whatis %1

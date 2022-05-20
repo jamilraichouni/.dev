@@ -72,7 +72,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git helm kubectl poetry)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,8 +102,10 @@ setopt INC_APPEND_HISTORY       # cmds are added to the history immediately
 export EDITOR=nvim
 export VISUAL=nvim
 
-# poetry
+# Python, poetry
 export POETRY_VIRTUALENVS_IN_PROJECT=true
+# export PYTHONBREAKPOINT=ipdb.set_trace
+export PYTHONBREAKPOINT=IPython.terminal.debugger.set_trace
 
 # home/ end keys:
 bindkey "^[[H" beginning-of-line
@@ -216,6 +218,7 @@ alias up='git add .; git commit -m "WIP"; git push'
 # tools:
 alias actpoetry='source $(poetry env info -p)/bin/activate'
 alias grep='grep --color --exclude-dir=.git --exclude-dir=.svn'
+alias ipython='ipython --profile jar'
 # alias ipython='ipython --logfile=~/ipython_log.py'
 
 # export JARVIMDIR=$HOME/repos/jarvim

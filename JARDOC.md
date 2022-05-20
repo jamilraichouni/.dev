@@ -6,9 +6,8 @@
   - [Environment setup](#environment-setup)
     - [Fonts](#fonts)
     - [Tools](#tools)
-      - [`Nvim`](#neovim)
-      - [Reasons for Nvim](#reasons-for-nvim)
-      - [Reasons for VIM](#reasons-for-vim)
+      - [`Neovim`](#neovim)
+      - [`IPython`](#ipython)
       - [`fzf`](#fzf)
 
 ## Development
@@ -40,7 +39,7 @@ see:
 
 #### Tools
 
-##### `Nvim`
+##### `Neovim`
 
 ###### Recipe: Filter lines into # buffer
 
@@ -56,7 +55,7 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
-##### Reasons for Nvim
+###### Reasons for Nvim
 
 - Treesitter support !!
 - Good working completion engine `nvim-cmp` that uses the following important sources:
@@ -70,11 +69,36 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 - Lua scripting instead of VimScript only
 - Bigger community, hence possibly more cool plugins etc.
 
-##### Reasons for VIM
+###### Reasons for VIM
 
 - vimspector with nice toolbar
 - Nearly always available on Unix machines
 - Maybe better tested (stability)
+
+##### `IPython`
+
+###### Debug code with `ipdb` in `IPython`
+
+```sh
+pip install ipdb
+export PYTHONBREAKPOINT=IPython.terminal.debugger.set_trace
+```
+
+**Variant 1:**
+
+Manually put a `breakpoint()` statement in the code and run
+
+```python
+%run [-m] statement  # e. g.: %run -m mddocgen.jobgen builddesc.yml .
+```
+
+**Variant 2:**
+
+```python
+%run -d [-m] statement  # e. g.: %run -d -m mddocgen.jobgen.__main__ builddesc.yml .
+```
+
+This will stop on entry in line 1 of the module `__main__`.
 
 ##### `fzf`
 
@@ -87,9 +111,26 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/opt/fzf
 
 ## Todo
 
+- Advanced select, copy etc.
+
+  Example:
+
+  How to copy the quoted `Pmenu...` entries?
+
+  ```vim
+  call <sid>hi('Pmenu', s:cdPopupFront, s:cdPopupBack, 'none', {})
+  call <sid>hi('PmenuSel', s:cdPopupFront, s:cdPopupHighlightBlue, 'none', {})
+  call <sid>hi('PmenuSbar', {}, s:cdPopupHighlightGray, 'none', {})
+  call <sid>hi('PmenuThumb', {}, s:cdPopupFront, 'none', {})
+  ```
+
+
 - ipython colors for tracebacks of raised exceptions (just try `import dummy`)
 
-- Align cursor shapes in `kitty` and terminal buffer in `(n)vim`
+- Write Treesitter extension for KeepassXC entries
+
+- Align cursor shapes in `kitty` and terminal buffer in `(n)vim`:
+  Want to have a red blinking beam in insert mode of Nvim's terminal!
 
 - Learn use of `netrw`
 
@@ -102,7 +143,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/opt/fzf
 
 - Snippets (translate VSCode -> UltiSnips)
 
-- light green background for current debugger line in `vimspector`
+- Turquise (#008787) background for current debugger line in `vimspector`
 
 - Snippet or JarVim command to add a new working times entry
 

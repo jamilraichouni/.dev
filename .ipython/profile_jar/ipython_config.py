@@ -205,7 +205,7 @@
 
 ## Whether to display a banner upon starting IPython.
 #  Default: True
-c.TerminalIPythonApp.display_banner = False
+c.TerminalIPythonApp.display_banner = True
 
 ## Run the file referenced by the PYTHONSTARTUP environment
 #  See also: InteractiveShellApp.exec_PYTHONSTARTUP
@@ -360,11 +360,11 @@ c.TerminalIPythonApp.display_banner = False
 
 ## The part of the banner to be printed before the profile
 #  Default: "Python 3.10.4 (v3.10.4:9d38120e33, Mar 23 2022, 17:29:05) [Clang 13.0.0 (clang-1300.0.29.30)]\nType 'copyright', 'credits' or 'license' for more information\nIPython 8.3.0 -- An enhanced Interactive Python. Type '?' for help.\n"
-# c.InteractiveShell.banner1 = ""
+c.InteractiveShell.banner1 = ""
 
 ## The part of the banner to be printed after the profile
 #  Default: ''
-# c.InteractiveShell.banner2 = ''
+c.InteractiveShell.banner2 = "Note that an existing '.env' file manipulates the env.\n"
 
 ## Set the size of the output cache.  The default is 1000, you can change it
 #  permanently in your config file.  Setting it to 0 completely disables the
@@ -373,7 +373,7 @@ c.TerminalIPythonApp.display_banner = False
 #  because otherwise you'll spend more time re-flushing a too small cache than
 #  working
 #  Default: 1000
-# c.InteractiveShell.cache_size = 1000
+c.InteractiveShell.cache_size = 5000
 
 ## Use colors for displaying information about objects. Because this information
 #  is passed through a pager (like 'less'), and some pagers get confused with
@@ -384,7 +384,7 @@ c.TerminalIPythonApp.display_banner = False
 ## Set the color scheme (NoColor, Neutral, Linux, or LightBG).
 #  Choices: any of ['Neutral', 'NoColor', 'LightBG', 'Linux'] (case-insensitive)
 #  Default: 'Neutral'
-c.InteractiveShell.colors = "neutral"
+c.InteractiveShell.colors = "linux"
 
 #  Default: False
 # c.InteractiveShell.debug = False
@@ -530,7 +530,7 @@ c.InteractiveShell.colors = "neutral"
 
 ## Set the color scheme (NoColor, Neutral, Linux, or LightBG).
 #  See also: InteractiveShell.colors
-c.TerminalInteractiveShell.colors = 'LightBG'
+c.TerminalInteractiveShell.colors = 'linux'
 
 ## Set to confirm when you try to exit IPython with an EOF (Control-D in Unix,
 #  Control-Z/Enter in Windows). By typing 'exit' or 'quit', you can force a

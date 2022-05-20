@@ -6,10 +6,10 @@ return require("packer").startup(function()
     use "wbthomason/packer.nvim"
 
     -- https://github.com/tomasiser/vim-code-dark
-    use {
-        "tomasiser/vim-code-dark",
-        config = function() require("config.vim-code-dark") end,
-    }
+    -- use {
+    --     "tomasiser/vim-code-dark",
+    --     config = function() require("config.vim-code-dark") end,
+    -- }
 
     -- https://github.com/tpope/vim-commentary
     use "tpope/vim-commentary"

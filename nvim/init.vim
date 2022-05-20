@@ -5,7 +5,6 @@ let jarvim_dir = $HOME .. "/repos/jarvim"
 if isdirectory(jarvim_dir)
     let &runtimepath.=",".jarvim_dir
 endif
-
 set autoindent
 
 " Use system clipboard
@@ -225,19 +224,23 @@ autocmd BufReadPost *.lua,*.py call SetupFolding()
     nnoremap <leader>, :noh<cr>
 
     " line numbers:
-    noremap <silent><leader>tt :call ToggleNumber()<cr>
+    noremap <silent><leader>ll :call ToggleNumber()<cr>
     noremap <silent><leader>rr :call ToggleRelativeNumber()<cr>
     " Register and load remote plugins:
     nnoremap <leader>uu :UpdateRemoteplugins<cr>
 
     " Edit specific files:
     nnoremap <leader>doc :call OpenDoc()<cr>
-    nnoremap <leader>erc :e $DEVHOME/zsh/zsh_all<cr>
+    " nnoremap <leader>erc :e $DEVHOME/zsh/zsh_all<cr>
+    nnoremap <leader>erc :e $DEVHOME/zsh/zsh_macos<bar>:new $DEVHOME/zsh/zsh_all<bar>:nohlsearch<bar>:wincmd k<bar>:resize 10<bar>:wincmd j<cr>
     nnoremap <leader>ewt :e $HOME/repos/finances/data/working_times.csv<cr>
     nnoremap <leader>init :e $HOME/.config/nvim/init.vim<cr>
     nnoremap <leader>plug :e $HOME/.config/nvim/lua/plugins.lua<cr>
     nnoremap <leader>lsp :e $HOME/.config/nvim/lua/config/nvim-lspconfig.lua<cr>
     nnoremap <leader>theme :e $HOME/.config/nvim/lua/config/vim-code-dark.lua<cr>
+
+    " Tools:
+    nnoremap <leader>top <cmd>:tabnew<bar>:terminal htop<cr>
 
     " resize window:
     nnoremap <silent><left> :vertical resize -5<cr>
@@ -268,11 +271,11 @@ autocmd BufReadPost *.lua,*.py call SetupFolding()
     nnoremap <silent><leader>tl <cmd>vnew +terminal<cr>
 
     " ipython
-    nnoremap <silent><leader>ii <cmd>terminal ipython<cr>
-    nnoremap <silent><leader>ih <cmd>leftabove vnew <bar> terminal ipython<cr>
-    nnoremap <silent><leader>ij <cmd>new <bar> terminal ipython<cr>
-    nnoremap <silent><leader>ik <cmd>aboveleft new <bar> terminal ipython<cr>
-    nnoremap <silent><leader>il <cmd>vnew <bar> terminal ipython<cr>
+    nnoremap <silent><leader>ii <cmd>terminal ipython --profile jar<cr>
+    nnoremap <silent><leader>ih <cmd>leftabove vnew <bar> terminal ipython --profile jar<cr>
+    nnoremap <silent><leader>ij <cmd>new <bar> terminal ipython --profile jar<cr>
+    nnoremap <silent><leader>ik <cmd>aboveleft new <bar> terminal ipython --profile jar<cr>
+    nnoremap <silent><leader>il <cmd>vnew <bar> terminal ipython --profile jar<cr>
 
 
     " LSP (maps: https://github.com/neovim/nvim-lspconfig#suggested-configuration)
@@ -351,3 +354,43 @@ autocmd BufReadPost *.lua,*.py call SetupFolding()
     nnoremap <c-p> :bprevious<cr>
     nnoremap <c-n> :bnext<cr>
     " }}}
+" Theme {{{
+highlight BookmarkAnnotationSign guifg=#3794FF
+highlight BookmarkSign guifg=#3794FF
+highlight ColorColumn guibg=#222222
+highlight Comment ctermfg=239 guifg=#5f5f5f cterm=italic gui=italic
+highlight CursorLineNr ctermfg=9 guifg=#ff0000
+highlight DiffAdd guibg=#4b5632
+highlight DiffChange guibg=#4b1818
+highlight DiffDelete guibg=#6f1313
+highlight DiffText guibg=#6f1313
+highlight LineNr guifg=#5a5a5a
+highlight Normal guibg=#1e1e1e
+highlight Pmenu guifg=#bbbbbb guibg=#2d2d30
+highlight PmenuSbar guibg=#3d3d40
+highlight PmenuSel guifg=#bbbbbb guibg=#073655
+highlight PmenuThumb guibg=#bbbbbb
+highlight StatusLine ctermbg=blue ctermfg=white guibg=#002240 guifg=#c0c0c0
+highlight StatusLineNC ctermbg=black ctermfg=white guibg=#121212 guifg=#767676
+highlight TabLine ctermbg=black ctermfg=white guibg=#121212 guifg=#767676
+highlight TabLineSel ctermbg=blue ctermfg=white guibg=#002240 guifg=#c0c0c0
+highlight VertSplit guifg=#1e1e1e guibg=#444444
+highlight! link Folded Comment
+highlight! link IncSearch DiffChange
+highlight! link Search DiffChange
+highlight! link diffAdded DiffAdd
+highlight! link diffChanged DiffChange
+highlight! link diffRemoved DiffDelete
+
+highlight CmpItemAbbrDeprecated guifg=#808080
+highlight CmpItemAbbrMatch guifg=#569cd6
+highlight CmpItemAbbrMatchFuzzy guifg=#569cd6
+highlight CmpItemKindVariable guifg=#9CDCFE
+highlight CmpItemKindInterface guifg=#9CDCFE
+highlight CmpItemKindText guifg=#9CDCFE
+highlight CmpItemKindFunction guifg=#C586C0
+highlight CmpItemKindMethod guifg=#C586C0
+highlight CmpItemKindKeyword guifg=#d4d4d4
+highlight CmpItemKindProperty guifg=#d4d4d4
+highlight CmpItemKindUnit guifg=#d4d4d4
+"}}}
