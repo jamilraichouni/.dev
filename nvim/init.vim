@@ -45,7 +45,7 @@ filetype plugin indent on
 " Set built-in file system explorer to use layout similar to the NERDTree plugin
 let g:netrw_liststyle=3
 " }}}
-" plugins {{{
+" Plugins {{{
 
 " Theme reset before any plugin changes something:
 set background=dark
@@ -58,49 +58,49 @@ else
     call plug#begin()
 
     " https://github.com/tomasiser/vim-code-dark
-    plug 'tomasiser/vim-code-dark'
+    Plug'tomasiser/vim-code-dark'
 
     " https://github.com/tpope/vim-commentary
-    plug 'tpope/vim-commentary'
+    Plug'tpope/vim-commentary'
 
     " https://github.com/tpope/vim-surround
-    plug 'tpope/vim-surround'
+    Plug'tpope/vim-surround'
 
     " https://github.com/MattesGroeger/vim-bookmarks
-    plug 'MattesGroeger/vim-bookmarks'
+    Plug'MattesGroeger/vim-bookmarks'
 
     " https://github.com/tpope/vim-repeat
-    plug 'tpope/vim-repeat'
+    Plug'tpope/vim-repeat'
 
     " https://github.com/vim-airline/vim-airline
-    plug 'vim-airline/vim-airline'
+    Plug'vim-airline/vim-airline'
 
     " https://github.com/tpope/vim-fugitive
-    plug 'tpope/vim-fugitive'
+    Plug'tpope/vim-fugitive'
 
     " https://github.com/fladson/vim-kitty
-    plug 'fladson/vim-kitty'
+    Plug'fladson/vim-kitty'
 
     " https://github.com/airblade/vim-gitgutter
-    plug 'https://github.com/airblade/vim-gitgutter'
+    Plug'https://github.com/airblade/vim-gitgutter'
 
     " https://github.com/dense-analysis/ale
-    plug 'https://github.com/dense-analysis/ale'
+    Plug'https://github.com/dense-analysis/ale'
 
     " https://github.com/ycm-core/YouCompleteMe
     " IMPORTANT: I could only build YouCompleteMe via 'YCM_CORES=1 ./install.py --verbose'
-    plug 'ycm-core/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
+    Plug'ycm-core/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
 
-    plug 'SirVer/ultisnips'
+    Plug'SirVer/ultisnips'
 
     " https://github.com/iamcco/markdown-preview.nvim
-    plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
     " https://github.com/puremourning/vimspector
-    plug 'puremourning/vimspector'
+    Plug'puremourning/vimspector'
 
     " https://github.com/vim-python/python-syntax
-    plug 'vim-python/python-syntax'
+    Plug'vim-python/python-syntax'
 
     call plug#end()
     colorscheme codedark
@@ -166,7 +166,7 @@ function! ToggleNumber()
         set norelativenumber
     else
         set relativenumber
-        hi LineNr ctermfg=grey guifg=grey
+        hi LineNr guifg=#5f5f5f
     endif
 endfunction
 
@@ -175,10 +175,10 @@ function! ToggleRelativeNumber()
     if &rnu
         set norelativenumber
         set number
-        hi LineNr ctermfg=white guifg=#d7875f
+        hi LineNr guifg=#d7875f
     else
         set relativenumber
-        hi LineNr ctermfg=grey guifg=gre guifg=grey
+        hi LineNr guifg=#5f5f5f
     endif
 endfunction
 " }}}
@@ -233,7 +233,7 @@ nnoremap <leader>, :noh<cr>
 noremap <silent><leader>ll :call ToggleNumber()<cr>
 noremap <silent><leader>rr :call ToggleRelativeNumber()<cr>
 " Register and load remote plugins:
-nnoremap <leader>uu :UpdateRemoteplugins<cr>
+nnoremap <leader>uu :UpdateRemotePlugins<cr>
 
 " Edit specific files:
 nnoremap <leader>doc :call OpenDoc()<cr>
@@ -241,7 +241,7 @@ nnoremap <leader>doc :call OpenDoc()<cr>
 nnoremap <leader>erc :e $DEVHOME/zsh/zsh_macos<bar>:new $DEVHOME/zsh/zsh_all<bar>:nohlsearch<bar>:wincmd k<bar>:resize 10<bar>:wincmd j<cr>
 nnoremap <leader>ewt :e $HOME/repos/finances/data/working_times.csv<cr>
 nnoremap <leader>init :e $HOME/.config/nvim/init.vim<cr>
-nnoremap <leader>plug :e $HOME/.config/nvim/lua/plugins.lua<cr>
+nnoremap <leader>Plug:e $HOME/.config/nvim/lua/plugins.lua<cr>
 nnoremap <leader>lsp :e $HOME/.config/nvim/lua/config/nvim-lspconfig.lua<cr>
 nnoremap <leader>theme :e $HOME/.config/nvim/lua/config/vim-code-dark.lua<cr>
 
@@ -410,7 +410,8 @@ let s:SplitThumb = {'gui': '#424242'}
 let s:CursorDarkDark = {'gui': '#222222'}
 let s:CursorDark = {'gui': '#51504f'}
 let s:CursorLight = {'gui': '#aeafad'}
-let s:Selection = {'gui': '#264f78'}
+" let s:Selection = {'gui': '#264f78'}
+let s:Selection = {'gui': '#5f0000'}
 let s:LineNumber = {'gui': '#5f5f5f'}
 
 let s:DiffRedDark = {'gui': '#4b1818'}
@@ -917,4 +918,5 @@ highlight BookmarkSign guifg=#3794FF
 " highlight! link Search DiffChange
 " let g:airline_theme='solarized'
 " let g:airline_solarized_bg='dark'
+
 "}}}

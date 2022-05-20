@@ -23,9 +23,9 @@ return require("packer").startup(function()
     -- https://github.com/vim-airline/vim-airline
     use {
         "vim-airline/vim-airline",
-        requires = {
-            "vim-airline/vim-airline-themes"
-        },
+        -- requires = {
+        --     "vim-airline/vim-airline-themes"
+        -- },
         config = function() require("config.vim-airline") end
     }
 
