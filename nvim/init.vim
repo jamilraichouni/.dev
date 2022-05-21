@@ -45,6 +45,7 @@ filetype plugin indent on
 " Set built-in file system explorer to use layout similar to the NERDTree plugin
 let g:netrw_liststyle=3
 " }}}
+
 " Plugins {{{
 
 " Theme reset before any plugin changes something:
@@ -106,6 +107,7 @@ else
     colorscheme codedark
 endif
 " }}}
+
 " Functions {{{
 " Search literally via command :Search <LITERAL>
 com! -nargs=1 Search :let @/='\V'.escape(<q-args>, '\\')| normal! n
@@ -182,6 +184,7 @@ function! ToggleRelativeNumber()
     endif
 endfunction
 " }}}
+
 " Events {{{
 " https://learnvimscriptthehardway.stevelosh.com/chapters/12.html#autocommands
 
@@ -207,6 +210,7 @@ endif
 " FILETYPE EVENTS ----------------------------------------------------------------------
 autocmd FileType Trouble setlocal wrap
 " }}}
+
 " Keymaps {{{
 let mapleader=","
 
@@ -241,7 +245,7 @@ nnoremap <leader>doc :call OpenDoc()<cr>
 nnoremap <leader>erc :e $DEVHOME/zsh/zsh_macos<bar>:new $DEVHOME/zsh/zsh_all<bar>:nohlsearch<bar>:wincmd k<bar>:resize 10<bar>:wincmd j<cr>
 nnoremap <leader>ewt :e $HOME/repos/finances/data/working_times.csv<cr>
 nnoremap <leader>init :e $HOME/.config/nvim/init.vim<cr>
-nnoremap <leader>Plug:e $HOME/.config/nvim/lua/plugins.lua<cr>
+nnoremap <leader>plug :e $HOME/.config/nvim/lua/plugins.lua<cr>
 nnoremap <leader>lsp :e $HOME/.config/nvim/lua/config/nvim-lspconfig.lua<cr>
 nnoremap <leader>theme :e $HOME/.config/nvim/lua/config/vim-code-dark.lua<cr>
 
@@ -363,6 +367,7 @@ nnoremap <leader>hl :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") 
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " }}}
+
 " Theme {{{
 set background=dark
 let g:colors_name="JAR"
@@ -392,7 +397,7 @@ let s:Number = {'gui': '#ff628c'}
 
 let s:TabCurrent = {'gui': '#1e1e1e'}
 let s:TabOther = {'gui': '#000000'}
-let s:TabOutside = {'gui': '#252526'}
+let s:TabOutside = {'gui': '#131416'}
 
 let s:LeftDark = {'gui': '#252526'}
 let s:LeftMid = {'gui': '#373737'}
@@ -444,6 +449,7 @@ let s:Silver = {'gui': '#c0c0c0'}
 call <sid>hi('Normal', s:Front, s:Back, 'none', {})
 call <sid>hi('Comment', {'gui': '#5f5f5f'}, {}, 'italic', {})
 call <sid>hi('SpecialComment', {'gui': '#5f5f5f'}, {}, 'italic', {})
+" call <sid>hi('ColorColumn', {'gui': '#ff0000'}, s:Back, 'none', {})
 call <sid>hi('ColorColumn', {}, s:CursorDarkDark, 'none', {})
 call <sid>hi('Cursor', s:CursorDark, s:CursorLight, 'none', {})
 call <sid>hi('CursorLine', {}, s:CursorDarkDark, 'none', {})
@@ -477,7 +483,7 @@ call <sid>hi('StatusLine', s:Front, s:LeftMid, 'none', {})
 call <sid>hi('StatusLineNC', s:Front, s:LeftDark, 'none', {})
 call <sid>hi('TabLine', {'gui': '#929292'}, s:TabOther, 'none', {})
 call <sid>hi('TabLineFill', s:Front, s:TabOutside, 'none', {})
-call <sid>hi('TabLineSel', s:Front, s:TabCurrent, 'none', {})
+call <sid>hi('TabLineSel', {'gui': '#9e9e9e'}, s:TabCurrent, 'bold,italic', {})
 call <sid>hi('Title', s:None, s:None, 'bold', {})
 call <sid>hi('Visual', s:None, s:Selection, 'none', {})
 call <sid>hi('VisualNOS', s:None, s:Selection, 'none', {})
@@ -914,8 +920,8 @@ highlight BookmarkSign guifg=#3794FF
 
 " highlight TabLine guifg=#929292 guibg=#000000
 " highlight TabLineSel guifg=#d4d4d4 guibg=#1e1e1e
-" highlight! link IncSearch DiffChange
-" highlight! link Search DiffChange
+highlight! link IncSearch DiffChange
+highlight! link Search DiffChange
 " let g:airline_theme='solarized'
 " let g:airline_solarized_bg='dark'
 

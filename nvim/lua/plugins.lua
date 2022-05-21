@@ -5,12 +5,6 @@ return require("packer").startup(function()
     -- https://github.com/wbthomason/packer.nvim
     use "wbthomason/packer.nvim"
 
-    -- https://github.com/tomasiser/vim-code-dark
-    -- use {
-    --     "tomasiser/vim-code-dark",
-    --     config = function() require("config.vim-code-dark") end,
-    -- }
-
     -- https://github.com/tpope/vim-commentary
     use "tpope/vim-commentary"
 
@@ -20,14 +14,22 @@ return require("packer").startup(function()
     -- https://github.com/tpope/vim-repeat
     use "tpope/vim-repeat"
 
-    -- https://github.com/vim-airline/vim-airline
+    -- https://github.com/feline-nvim/feline.nvim
     use {
-        "vim-airline/vim-airline",
-        -- requires = {
-        --     "vim-airline/vim-airline-themes"
-        -- },
-        config = function() require("config.vim-airline") end
+      "feline-nvim/feline.nvim",
+      config = function()
+          require('feline').setup()
+      end
     }
+
+    -- https://github.com/vim-airline/vim-airline
+    -- use {
+    --     "vim-airline/vim-airline",
+    --     -- requires = {
+    --     --     "vim-airline/vim-airline-themes"
+    --     -- },
+    --     config = function() require("config.vim-airline") end
+    -- }
 
     -- https://github.com/tpope/vim-fugitive
     use "tpope/vim-fugitive"
@@ -81,12 +83,6 @@ return require("packer").startup(function()
             },
         }
     }
-
-    -- https://github.com/ray-x/lsp_signature.nvim
-    -- use {
-    --     "ray-x/lsp_signature.nvim",
-    --     config = function() require("config.lsp_signature") end
-    -- }
 
     -- https://github.com/SirVer/ultisnips
     use { "SirVer/ultisnips", config = function() require("config.ultisnips") end }
@@ -244,6 +240,8 @@ return require("packer").startup(function()
         config = function() require("config.trouble") end
     }
 
+    -- https://github.com/lukas-reineke/indent-blankline.nvim
+    use { "lukas-reineke/indent-blankline.nvim" }
     -- use {"jamilraichouni/jarvim"}
     -- }}}
 

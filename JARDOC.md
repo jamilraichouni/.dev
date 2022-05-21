@@ -1,4 +1,4 @@
-# JAt Documentation
+# JAR Documentation
 
 ## Contents
 
@@ -104,6 +104,37 @@ Manually put a `breakpoint()` statement in the code and run
 
 This will stop on entry in line 1 of the module `__main__`.
 
+###### Analyse shell command outputs
+
+**Example: List symbolic links:**
+
+```ipython
+In [14]: items = !ls -la
+
+In [15]: [i for i in items if i[0].startswith("l")]
+Out[15]:
+['lrwxr-xr-x     1 jamilraichouni  staff      38 May  6 07:49 .config -> /Users/jamilraichouni/My Drive/.config',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      39 May 16 21:46 .gdbinit -> /Users/jamilraichouni/My Drive/.gdbinit',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      41 May  6 13:59 .gitconfig -> /Users/jamilraichouni/My Drive/.gitconfig',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      41 May  6 14:00 .gitignore -> /Users/jamilraichouni/My Drive/.gitignore',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      37 May  7 10:12 .icons -> /Users/jamilraichouni/My Drive/.icons',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      41 May 19 14:06 .ipython -> /Users/jamilraichouni/repos/.dev/.ipython',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      41 May  6 13:58 .oh-my-zsh -> /Users/jamilraichouni/My Drive/.oh-my-zsh',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      40 May  6 13:58 .p10k.zsh -> /Users/jamilraichouni/My Drive/.p10k.zsh',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      39 May 19 22:09 .pdbrc -> /Users/jamilraichouni/repos/.dev/.pdbrc',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      35 May  6 07:54 .ssh -> /Users/jamilraichouni/My Drive/.ssh',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      39 May 18 15:38 .vimrc -> /Users/jamilraichouni/repos/.dev/.vimrc',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      37 May  7 10:19 .zshrc -> /Users/jamilraichouni/My Drive/.zshrc',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      11 May 12 12:22 DB -> My Drive/DB',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      38 May  6 08:07 Desktop -> /Users/jamilraichouni/My Drive/Desktop',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      40 May  8 12:24 Downloads -> /Users/jamilraichouni/My Drive/Downloads',
+ 'lrwx------     1 jamilraichouni  staff      20 May 20 20:19 Google Drive -> /Volumes/GoogleDrive',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      12 May 12 12:22 JAR -> My Drive/JAR',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      12 May 11 07:05 bak -> My Drive/bak',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      30 May 16 22:01 mydrive -> /Users/jamilraichouni/My Drive',
+ 'lrwxr-xr-x     1 jamilraichouni  staff      34 May  6 08:12 tmp -> /Users/jamilraichouni/My Drive/tmp']
+```
+
 ##### `fzf`
 
 <https://github.com/junegunn/fzf>
@@ -127,7 +158,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/opt/fzf
   call <sid>hi('PmenuSbar', {}, s:cdPopupHighlightGray, 'none', {})
   call <sid>hi('PmenuThumb', {}, s:cdPopupFront, 'none', {})
   ```
-
 
 - ipython colors for tracebacks of raised exceptions (just try `import dummy`)
 

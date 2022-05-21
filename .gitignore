@@ -1,3 +1,4 @@
+.ipython/*/history.sqlite
 Session.vim
 __pycache__/
 kitty/mastersecret

@@ -239,6 +239,7 @@ alias cl='clear'
 alias cleanpy='cleanpy_func'
 alias doc="nvim -c 'MarkdownPreview' $DEVHOME/JARDOC.md"
 alias ewt='nvim $HOME/repos/finances/data/working_times.csv'
+alias init="nvim -c'e ~/.config/nvim/init.vim'"
 alias pslong='ps -eo pid,nice,user,command'
 alias psshort='ps -eo pid,nice,user,comm'
 alias src='source $HOME/.zshrc'
