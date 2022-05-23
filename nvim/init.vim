@@ -24,6 +24,7 @@ set laststatus=2
 set list listchars=tab:\ \ ,trail:·
 set mouse=a
 set nobackup
+set noshowmode
 set noswapfile
 set nowrap
 set nowritebackup
@@ -296,6 +297,7 @@ nnoremap <silent><leader>li <cmd>lua vim.lsp.buf.implementation()<cr>
 nnoremap <silent><leader>lj <cmd>lua vim.diagnostic.goto_next{wrap=false,popup_opts={border="single"}}<cr>
 nnoremap <silent><leader>lk <cmd>lua vim.diagnostic.goto_prev{wrap=false,popup_opts={border="single"}}<cr>
 nnoremap <silent><leader>ln <cmd>lua vim.lsp.buf.rename()<cr>
+nnoremap <silent><leader>lo <cmd>lua vim.diagnostic.open_float()<cr>
 nnoremap <silent><leader>lr <cmd>lua vim.lsp.buf.references()<cr>
 nnoremap <silent><leader>lt <cmd>TroubleToggle document_diagnostics<cr>
 
@@ -427,6 +429,7 @@ let s:DiffGreenLight = {'gui': '#4b5632'}
 
 let s:SearchCurrent = {'gui': '#4b5632'} 
 let s:Search = {'gui': '#264f78'}
+let s:StatusLineBg = {'gui': '#002240'}
 
 " syntax colors:
 let s:Gray = {'gui': '#808080'}
@@ -479,7 +482,7 @@ call <sid>hi('PmenuThumb', {}, s:PopupFront, 'none', {})
 call <sid>hi('Question', s:Blue, s:Back, 'none', {})
 call <sid>hi('Search', s:None, s:Search, 'none', {})
 call <sid>hi('SpecialKey', s:Blue, s:None, 'none', {})
-call <sid>hi('StatusLine', s:Front, s:LeftMid, 'none', {})
+call <sid>hi('StatusLine', s:Front, s:StatusLineBg, 'none', {})
 call <sid>hi('StatusLineNC', s:Front, s:LeftDark, 'none', {})
 call <sid>hi('TabLine', {'gui': '#929292'}, s:TabOther, 'none', {})
 call <sid>hi('TabLineFill', s:Front, s:TabOutside, 'none', {})

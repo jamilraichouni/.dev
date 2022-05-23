@@ -16,10 +16,15 @@ return require("packer").startup(function()
 
     -- https://github.com/feline-nvim/feline.nvim
     use {
-      "feline-nvim/feline.nvim",
-      config = function()
-          require('feline').setup()
-      end
+        "feline-nvim/feline.nvim",
+        config = function() require("config.feline") end,
+        requires = {
+            -- https://github.com/lewis6991/gitsigns.nvim
+            use {
+                "lewis6991/gitsigns.nvim",
+                config = function() require("gitsigns").setup() end
+            }
+        }
     }
 
     -- https://github.com/vim-airline/vim-airline
@@ -220,13 +225,6 @@ return require("packer").startup(function()
 
     -- https://github.com/MattesGroeger/vim-bookmarks
     use "MattesGroeger/vim-bookmarks"
-
-
-    -- https://github.com/lewis6991/gitsigns.nvim
-    use {
-        "lewis6991/gitsigns.nvim",
-        config = function() require("gitsigns").setup() end
-    }
 
     -- https://github.com/folke/trouble.nvim
     use {

@@ -146,6 +146,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/opt/fzf
 
 ## Todo
 
+- Undercurled line instead of underlines for lsp diagnostics
+
 - Advanced select, copy etc.
 
   Example:
