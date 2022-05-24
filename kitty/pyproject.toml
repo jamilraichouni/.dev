@@ -30,7 +30,7 @@ import_heading_thirdparty = "3rd party:"
 import_heading_firstparty = "1st party:"
 import_heading_localfolder = "local:"
 include_trailing_comma = true
-known_local_folder = ["mypythonproject", "tests",]
+# known_local_folder = ["mypythonproject", "tests",]
 line_length = 88
 multi_line_output = 3
 py_version = "auto"
@@ -153,7 +153,6 @@ match = "(?!(conftest|test_)).*\\.py"
 [tool.pyright]
 pythonVersion = "3.10"
 typeCheckingMode = "strict"
-include = ["tests",]
 reportConstantRedefinition = "warning"
 reportGeneralTypeIssues = false  # reported by mypy
 reportUnknownArgumentType = false

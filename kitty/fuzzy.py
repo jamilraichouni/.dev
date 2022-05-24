@@ -1,7 +1,6 @@
 """Kitten that fuzzy finds any information from KeePassXC."""
 
 # Standard library:
-import os
 import subprocess
 import sys
 import typing as t
@@ -75,7 +74,7 @@ def _error(msg: str) -> None:
 
 def _select_keepass_secret(option: str) -> t.Optional[str]:
     """Select secret from any of all KeePassXC entries that have a user name."""
-    secret = None
+    secret: t.Optional[str] = None
     stdout, stderr = subprocess.Popen(
         [
             KEYPASSXC_EXE,
@@ -121,7 +120,8 @@ def main(args: list[str]) -> t.Optional[str]:
 
     """
     if len(args) != 2:
-        return _error("Invalid number of arguments passed to kitten!")
+        _error("Invalid number of arguments passed to kitten!")
+        return None
     elif (option := args[1].lower().strip()) not in (
         "bookmark",
         "file",
@@ -129,10 +129,11 @@ def main(args: list[str]) -> t.Optional[str]:
         "url",
         "user",
     ):
-        return _error(
+        _error(
             f"Invalid argument '{args[1]}' passed to kitten. "
             "Expecting one out of 'bookmark', 'file', 'password', 'url', 'user'."
         )
+        return None
     if not Path(FZF_EXE).exists():
         _error(f"Cannot find FZF at '{FZF_EXE}'!")
         return None

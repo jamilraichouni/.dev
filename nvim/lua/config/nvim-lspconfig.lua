@@ -151,34 +151,27 @@ lspconfig.diagnosticls.setup({
                     }
                 },
             },
-            -- https://github.com/microsoft/pyright
-            -- pyright = {
-            --     command = "pyright-langserver",
-            --     args = { "--stdio" },
-            --     rootPatterns = pythonRootPatterns,
-            --     sourceName = "pyright",
-            --     parseJson = {
-            --         -- to see some example:
-            --         -- cat /path/to/file | pyright --outputjson
-            --         errorsRoot = "generalDiagnostics",
-            --         sourceName = "file",
-            --         line = "range.start.line",
-            --         column = "range.start.character",
-            --         security = "severity",
-            --         message = "[pyright] ${message} [${rule}]"
-            --     },
-            --     securities = {
-            --         error = "error",
-            --         information = "info",
-            --         warning = "warning",
-            --     }
-            -- },
+            mypy = {
+                command = "mypy",
+                args = { "--hide-column-numbers", "--no-error-summary", "--no-color-output", "--command", "%text" },
+                isStdout = true,
+                sourceName = "mypy",
+                formatLines = 1,
+                formatPattern = {
+                    "^<string>:(\\d+): ([\\w]+): (.*)$",
+                    {
+                        line = 1,
+                        message = 3,
+                        security = 2
+                    }
+                },
+            }
         },
         filetypes = {
             -- filetype to linter(s) mapping:
             python = {
                 "flake8",
-                -- "pyright",
+                "mypy",
             },
             markdown = { "markdownlint" }
         },

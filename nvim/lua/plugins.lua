@@ -240,6 +240,10 @@ return require("packer").startup(function()
 
     -- https://github.com/lukas-reineke/indent-blankline.nvim
     use { "lukas-reineke/indent-blankline.nvim" }
+    use {
+        "preservim/tagbar",
+        config = function() vim.cmd("let g:tagbar_position = 'topleft vertical'") end
+    }
     -- use {"jamilraichouni/jarvim"}
     -- }}}
 

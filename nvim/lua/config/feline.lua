@@ -161,11 +161,11 @@ components.active[1] = {
     },
     {
         provider = "diagnostic_errors",
-        hl = "StatusLine",
+        hl = { bg = "#002240", fg = "#ff0000" }
     },
     {
         provider = "diagnostic_warnings",
-        hl = "StatusLine",
+        hl = { bg = "#002240", fg = "#ffff00" }
     },
     {
         provider = "diagnostic_hints",
