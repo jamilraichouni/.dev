@@ -6,10 +6,10 @@ return require("packer").startup(function()
     use "wbthomason/packer.nvim"
 
     -- https://github.com/tpope/vim-commentary
-    use { "tpope/vim-commentary", event = "BufReadPost" }
+    use { "tpope/vim-commentary", event = "BufWinEnter" }
 
     -- https://github.com/tpope/vim-surround
-    use { "tpope/vim-surround", event = "BufReadPost" }
+    use { "tpope/vim-surround", event = "BufWinEnter" }
 
     -- https://github.com/tpope/vim-repeat
     use "tpope/vim-repeat"
@@ -49,7 +49,7 @@ return require("packer").startup(function()
     use {
         -- https://github.com/hrsh7th/nvim-cmp
         "hrsh7th/nvim-cmp", -- ENGINE
-        event = "BufReadPost",
+        event = "BufWinEnter",
         config = function() require("config.nvim-cmp") end,
         requires = {
             -- SOURCES/ PROVIDERS
@@ -126,7 +126,7 @@ return require("packer").startup(function()
     -- https://github.com/neovim/nvim-lspconfig
     use {
         "neovim/nvim-lspconfig",
-        event = "BufReadPost",
+        event = "BufWinEnter",
         config = function() require("config.nvim-lspconfig") end,
     }
 
@@ -207,7 +207,7 @@ return require("packer").startup(function()
     -- (Better syntax highlighting)
     use {
         "nvim-treesitter/nvim-treesitter",
-        event = "BufReadPost",
+        event = "BufWinEnter",
         run = function()
             vim.cmd(":TSUpdate")
             -- vim.cmd(":TSInstall! bash c cpp css dockerfile html java javascript json lua python rst scss toml typescript vue yaml")
@@ -221,12 +221,12 @@ return require("packer").startup(function()
     }
 
     -- https://github.com/MattesGroeger/vim-bookmarks
-    use { "MattesGroeger/vim-bookmarks", event = "BufReadPost" }
+    use { "MattesGroeger/vim-bookmarks", event = "BufWinEnter" }
 
     -- https://github.com/folke/trouble.nvim
     use {
         "folke/trouble.nvim",
-        event = "BufReadPost",
+        event = "BufWinEnter",
         requires = {
             -- https://github.com/kyazdani42/nvim-web-devicons
             "kyazdani42/nvim-web-devicons",
