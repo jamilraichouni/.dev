@@ -23,7 +23,7 @@ return require("packer").startup(function()
             -- https://github.com/lewis6991/gitsigns.nvim
             use {
                 "lewis6991/gitsigns.nvim",
-                event = "BufEnter",
+                event = "BufWinEnter",
                 config = function() require("gitsigns").setup() end
             }
         }
