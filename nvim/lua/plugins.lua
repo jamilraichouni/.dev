@@ -22,6 +22,7 @@ return require("packer").startup(function()
             -- https://github.com/lewis6991/gitsigns.nvim
             use {
                 "lewis6991/gitsigns.nvim",
+                event = "BufEnter",
                 config = function() require("gitsigns").setup() end
             }
         }
@@ -47,7 +48,7 @@ return require("packer").startup(function()
     use {
         -- https://github.com/hrsh7th/nvim-cmp
         "hrsh7th/nvim-cmp", -- ENGINE
-        event = "InsertEnter",
+        event = "BufReadPost",
         config = function() require("config.nvim-cmp") end,
         requires = {
             -- SOURCES/ PROVIDERS
