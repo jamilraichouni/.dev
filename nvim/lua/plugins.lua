@@ -17,6 +17,7 @@ return require("packer").startup(function()
     -- https://github.com/feline-nvim/feline.nvim
     use {
         "feline-nvim/feline.nvim",
+        event = "BufWinEnter",
         config = function() require("config.feline") end,
         requires = {
             -- https://github.com/lewis6991/gitsigns.nvim
