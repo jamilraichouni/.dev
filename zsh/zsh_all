@@ -77,10 +77,21 @@ plugins=(git helm kubectl poetry)
 source $ZSH/oh-my-zsh.sh
 
 # JAR configuration
+
+# functions:
+pathprepend() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="$1:${PATH:+"$PATH"}"
+    fi
+}
+
 export LSCOLORS=Exfxcxdxcxegedabageced  # https://hdevstudy.tistory.com/52
 
 # PATH:
-export PATH=~/opt:~/opt/bat:~/opt/nvim/bin:$PATH
+# export PATH=~/opt:~/opt/bat:~/opt/nvim/bin:$PATH
+pathprepend ~/opt/nvim/bin
+pathprepend ~/opt/bat
+pathprepend ~/opt
 
 setopt autopushd    # cd automatically pushes old dir onto dir stack
 setopt pushd_ignore_dups # don't push multiple copies of the same directory onto the directory stack
@@ -223,9 +234,11 @@ alias ipython='ipython --profile jar'
 
 # export JARVIMDIR=$HOME/repos/jarvim
 alias vd='NVIM_LISTEN_ADDRESS=/tmp/nvim nvim'
-alias vi='nvim'
+# alias vi='nvim'
 alias vis='nvim -S'
 alias vidiff='nvim -d'
+# alias viprofile='export FILEPATH=$HOME/repos/profile_nvim/data/logs/$(date +%s).log; vi --startuptime $FILEPATH -c"e $FILEPATH" -c"PackerProfile" -c"wincmd w"'
+alias vi='export FILEPATH=$HOME/repos/profile_nvim/data/logs/$(date +%Y%m%d_%H%M%S_%s).log; nvim --startuptime $FILEPATH'
 
 # fzf:
 FZF_DEFAULT_OPTS='--history-size=10000'

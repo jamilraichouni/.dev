@@ -153,16 +153,16 @@ lspconfig.diagnosticls.setup({
             },
             mypy = {
                 command = "mypy",
-                args = { "--hide-column-numbers", "--no-error-summary", "--no-color-output", "--command", "%text" },
+                args = { "--hide-column-numbers", "--no-error-summary", "--no-color-output", "--shadow-file", "%file", "%tempfile", "%file" },
                 isStdout = true,
                 sourceName = "mypy",
                 formatLines = 1,
                 formatPattern = {
-                    "^<string>:(\\d+): ([\\w]+): (.*)$",
+                    "^[\\w\\.\\d\\/]+:(\\d+): ([\\w]+): (.*)$",
                     {
                         line = 1,
-                        message = 3,
-                        security = 2
+                        security = 2,
+                        message = 3
                     }
                 },
             }

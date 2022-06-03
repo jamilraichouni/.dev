@@ -27,15 +27,6 @@ return require("packer").startup(function()
         }
     }
 
-    -- https://github.com/vim-airline/vim-airline
-    -- use {
-    --     "vim-airline/vim-airline",
-    --     -- requires = {
-    --     --     "vim-airline/vim-airline-themes"
-    --     -- },
-    --     config = function() require("config.vim-airline") end
-    -- }
-
     -- https://github.com/tpope/vim-fugitive
     use "tpope/vim-fugitive"
 
@@ -44,7 +35,7 @@ return require("packer").startup(function()
 
     -- }}}
 
-    -- COMPLETION {{{
+    -- COMPLETION AND LSP {{{
 
     -- use {
     --     -- IMPORTANT: I could only build YouCompleteMe via:
@@ -56,6 +47,7 @@ return require("packer").startup(function()
     use {
         -- https://github.com/hrsh7th/nvim-cmp
         "hrsh7th/nvim-cmp", -- ENGINE
+        event = "InsertEnter",
         config = function() require("config.nvim-cmp") end,
         requires = {
             -- SOURCES/ PROVIDERS
@@ -63,34 +55,41 @@ return require("packer").startup(function()
             {
                 -- https://github.com/hrsh7th/cmp-buffer
                 "hrsh7th/cmp-buffer",
+                after = "nvim-cmp"
             },
             {
                 -- https://github.com/hrsh7th/cmp-nvim-lsp
                 "hrsh7th/cmp-nvim-lsp", -- source
+                after = "nvim-cmp",
                 requires = { "neovim/nvim-lspconfig" } -- provider
             },
             {
                 -- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help
                 "hrsh7th/cmp-nvim-lsp-signature-help", -- source
+                after = "nvim-cmp",
                 requires = { "neovim/nvim-lspconfig" } -- provider
             },
             {
-                "quangnguyen30192/cmp-nvim-ultisnips",
+                -- https://github.com/quangnguyen30192/cmp-nvim-ultisnips
+                "quangnguyen30192/cmp-nvim-ultisnips", -- source
+                after = "nvim-cmp",
                 config = function() require("config.cmp-nvim-ultisnips") end,
                 requires = {
-                    "SirVer/ultisnips",
+                    -- https://github.com/SirVer/ultisnips
+                    "SirVer/ultisnips", -- provider
+                    after = "nvim-cmp",
                     config = function() require("config.ultisnips") end
                 }
             },
             {
                 -- https://github.com/hrsh7th/cmp-path
-                "hrsh7th/cmp-path",
+                "hrsh7th/cmp-path", -- source
+                after = "nvim-cmp"
             },
         }
     }
 
-    -- https://github.com/SirVer/ultisnips
-    use { "SirVer/ultisnips", config = function() require("config.ultisnips") end }
+    -- use { "SirVer/ultisnips", config = function() require("config.ultisnips") end }
 
     -- }}}
 
@@ -99,6 +98,7 @@ return require("packer").startup(function()
     -- https://github.com/nvim-telescope/telescope.nvim
     use {
         "nvim-telescope/telescope.nvim",
+        cmd = "Telescope",
         requires = "nvim-lua/plenary.nvim",
         config = function()
             require("config.telescope")
@@ -108,10 +108,12 @@ return require("packer").startup(function()
     -- https://github.com/LinArcX/telescope-env.nvim
     use {
         "LinArcX/telescope-env.nvim",
+        after = "telescope.nvim",
         config = function() require("config.telescope-env") end
     }
     use {
         "nvim-telescope/telescope-fzf-native.nvim",
+        after = "telescope.nvim",
         config = function() require("config.telescope-fzf-native") end,
         run = "make"
     }
@@ -150,6 +152,7 @@ return require("packer").startup(function()
     -- https://puremourning.github.io/vimspector/configuration.html
     use {
         "puremourning/vimspector",
+        ft = "python",
         config = function()
             vim.cmd [[let g:vimspector_enable_mappings = 'HUMAN' ]]
             vim.cmd [[let g:vimspector_install_gadgets = ['debugpy'] ]]
@@ -165,7 +168,7 @@ return require("packer").startup(function()
     -- https://github.com/iamcco/markdown-preview.nvim
     use {
         "iamcco/markdown-preview.nvim",
-        ft = { "markdown" },
+        ft = "markdown",
         run = ":call mkdp#util#install()",
         setup = function()
             vim.cmd([[
@@ -188,20 +191,10 @@ return require("packer").startup(function()
     }
 
     -- https://github.com/mechatroner/rainbow_csv
-    use { "mechatroner/rainbow_csv", ft = { "csv" } }
+    use { "mechatroner/rainbow_csv", ft = "csv" }
 
     -- https://github.com/Glench/Vim-Jinja2-Syntax
     use { "Glench/Vim-Jinja2-Syntax", ft = { "jinja", "jinja.html" } }
-
-    --
-    use {
-        "hanschen/vim-ipython-cell",
-        requires = {
-            "jpalardy/vim-slime",
-            ft = { "python" }
-        },
-        ft = { "python" }
-    }
 
     -- }}}
 
@@ -239,11 +232,11 @@ return require("packer").startup(function()
     }
 
     -- https://github.com/lukas-reineke/indent-blankline.nvim
-    use { "lukas-reineke/indent-blankline.nvim" }
-    use {
-        "preservim/tagbar",
-        config = function() vim.cmd("let g:tagbar_position = 'topleft vertical'") end
-    }
+    -- use { "lukas-reineke/indent-blankline.nvim" }
+    -- use {
+    --     "preservim/tagbar",
+    --     config = function() vim.cmd("let g:tagbar_position = 'topleft vertical'") end
+    -- }
     -- use {"jamilraichouni/jarvim"}
     -- }}}
 

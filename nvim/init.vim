@@ -1,10 +1,10 @@
 " Core {{{
 set shell=/bin/zsh
 let g:python3_host_prog = "/usr/local/bin/python3"
-let jarvim_dir = $HOME .. "/repos/jarvim"
-if isdirectory(jarvim_dir)
-    let &runtimepath.=",".jarvim_dir
-endif
+" let jarvim_dir = $HOME .. "/repos/jarvim"
+" if isdirectory(jarvim_dir)
+"     let &runtimepath.=",".jarvim_dir
+" endif
 set autoindent
 
 " Use system clipboard
@@ -201,8 +201,8 @@ autocmd BufReadPost *.reqif setlocal filetype=xml syntax=xml
 autocmd BufReadPost .bash* setlocal syntax=sh
 autocmd BufReadPost init.vim,plugins.lua setlocal foldmethod=marker
 autocmd BufReadPost lsp.log setlocal wrap
-autocmd BufWritePost *.snippets CmpUltisnipsReloadSnippets
-autocmd BufWritePost */jarvim/**/*.py UpdateRemoteplugins
+autocmd BufWritePost *.snippets :CmpUltisnipsReloadSnippets
+autocmd BufWritePost */jarvim/**/*.py :UpdateRemoteplugins
 autocmd BufWritePost plugins.lua source <afile> | PackerCompile
 if has("nvim")
   autocmd TermOpen * setlocal colorcolumn=0 nonumber norelativenumber | startinsert!

@@ -1,3 +1,4 @@
+from pathlib import Path
 # Configuration file for ipython.
 
 #------------------------------------------------------------------------------
@@ -364,7 +365,8 @@ c.InteractiveShell.banner1 = ""
 
 ## The part of the banner to be printed after the profile
 #  Default: ''
-c.InteractiveShell.banner2 = "Note that an existing '.env' file manipulates the env.\n"
+
+c.InteractiveShell.banner2 = "Note that an existing '.env' file manipulates the env.\n" if Path(Path.cwd() / ".env").is_file() else ""
 
 ## Set the size of the output cache.  The default is 1000, you can change it
 #  permanently in your config file.  Setting it to 0 completely disables the
