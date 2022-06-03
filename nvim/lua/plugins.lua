@@ -6,10 +6,10 @@ return require("packer").startup(function()
     use "wbthomason/packer.nvim"
 
     -- https://github.com/tpope/vim-commentary
-    use "tpope/vim-commentary"
+    use { "tpope/vim-commentary", event = "BufReadPost" }
 
     -- https://github.com/tpope/vim-surround
-    use "tpope/vim-surround"
+    use { "tpope/vim-surround", event = "BufReadPost" }
 
     -- https://github.com/tpope/vim-repeat
     use "tpope/vim-repeat"
@@ -32,7 +32,7 @@ return require("packer").startup(function()
     use "tpope/vim-fugitive"
 
     --- https://github.com/fladson/vim-kitty
-    use "fladson/vim-kitty"
+    use { "fladson/vim-kitty", ft = "kitty" }
 
     -- }}}
 
@@ -125,6 +125,7 @@ return require("packer").startup(function()
     -- https://github.com/neovim/nvim-lspconfig
     use {
         "neovim/nvim-lspconfig",
+        event = "BufReadPost",
         config = function() require("config.nvim-lspconfig") end,
     }
 
@@ -205,6 +206,7 @@ return require("packer").startup(function()
     -- (Better syntax highlighting)
     use {
         "nvim-treesitter/nvim-treesitter",
+        event = "BufReadPost",
         run = function()
             vim.cmd(":TSUpdate")
             -- vim.cmd(":TSInstall! bash c cpp css dockerfile html java javascript json lua python rst scss toml typescript vue yaml")
@@ -218,11 +220,12 @@ return require("packer").startup(function()
     }
 
     -- https://github.com/MattesGroeger/vim-bookmarks
-    use "MattesGroeger/vim-bookmarks"
+    use { "MattesGroeger/vim-bookmarks", event = "BufReadPost" }
 
     -- https://github.com/folke/trouble.nvim
     use {
         "folke/trouble.nvim",
+        event = "BufReadPost",
         requires = {
             -- https://github.com/kyazdani42/nvim-web-devicons
             "kyazdani42/nvim-web-devicons",
