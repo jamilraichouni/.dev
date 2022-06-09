@@ -12,7 +12,7 @@ return require("packer").startup(function()
     use { "tpope/vim-surround", event = "BufWinEnter" }
 
     -- https://github.com/tpope/vim-repeat
-    use "tpope/vim-repeat"
+    use { "tpope/vim-repeat", event = "BufWinEnter" }
 
     -- https://github.com/feline-nvim/feline.nvim
     use {
