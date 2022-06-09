@@ -9,13 +9,14 @@
 
 -- INSTALLATIONS:
 
--- sudo npm install -g \
+-- NPMDIR=$HOME/.local/share/npm; [[ -d $NPMDIR ]] || mkdir $NPMDIR && npm install -g --prefix $NPMDIR \
 -- @angular/language-server \
 -- bash-language-server \
 -- diagnostic-languageserver \
 -- dockerfile-language-server-nodejs \
 -- markdownlint-cli \
 -- prettier \
+-- pyright \
 -- typescript \
 -- typescript-language-server \
 -- vscode-json-languageserver \

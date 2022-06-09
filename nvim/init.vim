@@ -56,6 +56,7 @@ syntax reset
 
 if has("nvim")
     lua require('plugins')
+    " runtime plugins-nvim.vim
 else
     call plug#begin()
 

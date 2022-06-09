@@ -126,7 +126,7 @@ return require("packer").startup(function()
     -- https://github.com/neovim/nvim-lspconfig
     use {
         "neovim/nvim-lspconfig",
-        event = "BufWinEnter",
+        -- event = "BufWinEnter",
         config = function() require("config.nvim-lspconfig") end,
     }
 
