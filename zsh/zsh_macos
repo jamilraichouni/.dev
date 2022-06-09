@@ -6,4 +6,5 @@ pathprepend ~/Library/Python/3.10/bin/
 pathprepend /Applications/KeePassXC.app/Contents/MacOS
 
 alias erc="nvim -c 'e $DEVHOME/zsh/zsh_macos' -c 'new +/JAR $DEVHOME/zsh/zsh_all' -c 'nohlsearch' -c 'wincmd k' -c 'resize 10' -c 'wincmd j'"
+alias mm='source ~/.venvs/jar-AKvBzFsq-py*/bin/activate && python ~/repos/jar/jarlib/mm.py move'
 alias sudo='sudo TERM=xterm-kitty TERMINFO=/Applications/kitty.app/Contents/Resources/kitty/terminfo'

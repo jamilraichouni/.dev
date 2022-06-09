@@ -118,6 +118,11 @@ export POETRY_VIRTUALENVS_IN_PROJECT=true
 # export PYTHONBREAKPOINT=ipdb.set_trace
 export PYTHONBREAKPOINT=IPython.terminal.debugger.set_trace
 
+# nvm setup:
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # home/ end keys:
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
