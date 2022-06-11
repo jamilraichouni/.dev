@@ -3,17 +3,32 @@ return require("packer").startup(function()
     -- CORE {{{
 
     -- https://github.com/wbthomason/packer.nvim
-    use { "wbthomason/packer.nvim", lock = true }
+    use {
+        "wbthomason/packer.nvim",
+        lock = true,
+    }
 
     -- https://github.com/tpope/vim-commentary
-    use { "tpope/vim-commentary", lock = true, event = "BufWinEnter" }
+    use {
+        "tpope/vim-commentary",
+        lock = true,
+        event = "BufWinEnter"
+    }
 
     -- https://github.com/tpope/vim-surround
     -- (e. g. cs"' to replace double by single quotes)
-    use { "tpope/vim-surround", lock = true, event = "BufWinEnter" }
+    use {
+        "tpope/vim-surround",
+        lock = true,
+        event = "BufWinEnter"
+    }
 
     -- https://github.com/tpope/vim-repeat
-    use { "tpope/vim-repeat", lock = true, event = "BufWinEnter" }
+    use {
+        "tpope/vim-repeat",
+        lock = true,
+        event = "BufWinEnter"
+    }
 
     -- https://github.com/feline-nvim/feline.nvim
     use {
@@ -33,10 +48,17 @@ return require("packer").startup(function()
     }
 
     -- https://github.com/tpope/vim-fugitive
-    use { "tpope/vim-fugitive", lock = true }
+    use {
+        "tpope/vim-fugitive",
+        lock = true
+    }
 
     --- https://github.com/fladson/vim-kitty
-    use { "fladson/vim-kitty", lock = true, ft = "kitty" }
+    use {
+        "fladson/vim-kitty",
+        lock = true,
+        ft = "kitty"
+    }
 
     -- }}}
 
@@ -87,6 +109,7 @@ return require("packer").startup(function()
                 requires = {
                     -- https://github.com/SirVer/ultisnips
                     "SirVer/ultisnips", -- provider
+                    lock = true,
                     after = "nvim-cmp",
                     config = function() require("config.ultisnips") end
                 }
@@ -208,10 +231,18 @@ return require("packer").startup(function()
     }
 
     -- https://github.com/mechatroner/rainbow_csv
-    use { "mechatroner/rainbow_csv", lock = true, ft = "csv" }
+    use {
+        "mechatroner/rainbow_csv",
+        lock = true,
+        ft = "csv"
+    }
 
     -- https://github.com/Glench/Vim-Jinja2-Syntax
-    use { "Glench/Vim-Jinja2-Syntax", lock = true, ft = { "jinja", "jinja.html" } }
+    use {
+        "Glench/Vim-Jinja2-Syntax",
+        lock = true,
+        ft = { "jinja", "jinja.html" }
+    }
 
     -- }}}
 
@@ -236,7 +267,11 @@ return require("packer").startup(function()
     }
 
     -- https://github.com/MattesGroeger/vim-bookmarks
-    use { "MattesGroeger/vim-bookmarks", lock = true, event = "BufWinEnter" }
+    use {
+        "MattesGroeger/vim-bookmarks",
+        lock = true,
+        event = "BufWinEnter"
+    }
 
     -- https://github.com/folke/trouble.nvim
     use {
@@ -245,9 +280,17 @@ return require("packer").startup(function()
         event = "BufWinEnter",
         requires = {
             -- https://github.com/kyazdani42/nvim-web-devicons
-            "kyazdani42/nvim-web-devicons",
+            use {
+                "kyazdani42/nvim-web-devicons",
+                lock = true,
+                after = "trouble.nvim"
+            },
             -- https://github.com/folke/lsp-colors.nvim
-            "folke/lsp-colors.nvim"
+            use {
+                "folke/lsp-colors.nvim",
+                lock = true,
+                after = "trouble.nvim"
+            }
         },
         config = function() require("config.trouble") end
     }
