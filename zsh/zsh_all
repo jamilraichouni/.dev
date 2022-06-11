@@ -89,6 +89,7 @@ export LSCOLORS=Exfxcxdxcxegedabageced  # https://hdevstudy.tistory.com/52
 
 # PATH:
 # export PATH=~/opt:~/opt/bat:~/opt/nvim/bin:$PATH
+pathprepend ~/.local/share/npm/bin
 pathprepend ~/opt/nvim/bin
 pathprepend ~/opt/bat
 pathprepend ~/opt
