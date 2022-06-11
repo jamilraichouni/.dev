@@ -9,6 +9,7 @@ return require("packer").startup(function()
     use { "tpope/vim-commentary", lock = true, event = "BufWinEnter" }
 
     -- https://github.com/tpope/vim-surround
+    -- (e. g. cs"' to replace double by single quotes)
     use { "tpope/vim-surround", lock = true, event = "BufWinEnter" }
 
     -- https://github.com/tpope/vim-repeat
