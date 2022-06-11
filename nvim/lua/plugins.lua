@@ -3,26 +3,28 @@ return require("packer").startup(function()
     -- CORE {{{
 
     -- https://github.com/wbthomason/packer.nvim
-    use "wbthomason/packer.nvim"
+    use { "wbthomason/packer.nvim", lock = true }
 
     -- https://github.com/tpope/vim-commentary
-    use { "tpope/vim-commentary", event = "BufWinEnter" }
+    use { "tpope/vim-commentary", lock = true, event = "BufWinEnter" }
 
     -- https://github.com/tpope/vim-surround
-    use { "tpope/vim-surround", event = "BufWinEnter" }
+    use { "tpope/vim-surround", lock = true, event = "BufWinEnter" }
 
     -- https://github.com/tpope/vim-repeat
-    use { "tpope/vim-repeat", event = "BufWinEnter" }
+    use { "tpope/vim-repeat", lock = true, event = "BufWinEnter" }
 
     -- https://github.com/feline-nvim/feline.nvim
     use {
         "feline-nvim/feline.nvim",
+        lock = true,
         event = "BufWinEnter",
         config = function() require("config.feline") end,
         requires = {
             -- https://github.com/lewis6991/gitsigns.nvim
             use {
                 "lewis6991/gitsigns.nvim",
+                lock = true,
                 event = "BufWinEnter",
                 config = function() require("gitsigns").setup() end
             }
@@ -30,10 +32,10 @@ return require("packer").startup(function()
     }
 
     -- https://github.com/tpope/vim-fugitive
-    use "tpope/vim-fugitive"
+    use { "tpope/vim-fugitive", lock = true }
 
     --- https://github.com/fladson/vim-kitty
-    use { "fladson/vim-kitty", ft = "kitty" }
+    use { "fladson/vim-kitty", lock = true, ft = "kitty" }
 
     -- }}}
 
@@ -49,6 +51,7 @@ return require("packer").startup(function()
     use {
         -- https://github.com/hrsh7th/nvim-cmp
         "hrsh7th/nvim-cmp", -- ENGINE
+        lock = true,
         event = "BufWinEnter",
         config = function() require("config.nvim-cmp") end,
         requires = {
@@ -57,23 +60,27 @@ return require("packer").startup(function()
             {
                 -- https://github.com/hrsh7th/cmp-buffer
                 "hrsh7th/cmp-buffer",
+                lock = true,
                 after = "nvim-cmp"
             },
             {
                 -- https://github.com/hrsh7th/cmp-nvim-lsp
                 "hrsh7th/cmp-nvim-lsp", -- source
+                lock = true,
                 after = "nvim-cmp",
                 requires = { "neovim/nvim-lspconfig" } -- provider
             },
             {
                 -- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help
                 "hrsh7th/cmp-nvim-lsp-signature-help", -- source
+                lock = true,
                 after = "nvim-cmp",
                 requires = { "neovim/nvim-lspconfig" } -- provider
             },
             {
                 -- https://github.com/quangnguyen30192/cmp-nvim-ultisnips
                 "quangnguyen30192/cmp-nvim-ultisnips", -- source
+                lock = true,
                 after = "nvim-cmp",
                 config = function() require("config.cmp-nvim-ultisnips") end,
                 requires = {
@@ -86,6 +93,7 @@ return require("packer").startup(function()
             {
                 -- https://github.com/hrsh7th/cmp-path
                 "hrsh7th/cmp-path", -- source
+                lock = true,
                 after = "nvim-cmp"
             },
         }
@@ -98,27 +106,30 @@ return require("packer").startup(function()
     -- TELESCOPE {{{
 
     -- https://github.com/nvim-telescope/telescope.nvim
-    use {
-        "nvim-telescope/telescope.nvim",
-        cmd = "Telescope",
-        requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("config.telescope")
-        end
-    }
+    -- use {
+    --     "nvim-telescope/telescope.nvim",
+    --     lock = true,
+    --     cmd = "Telescope",
+    --     requires = "nvim-lua/plenary.nvim",
+    --     config = function()
+    --         require("config.telescope")
+    --     end
+    -- }
 
     -- https://github.com/LinArcX/telescope-env.nvim
-    use {
-        "LinArcX/telescope-env.nvim",
-        after = "telescope.nvim",
-        config = function() require("config.telescope-env") end
-    }
-    use {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        after = "telescope.nvim",
-        config = function() require("config.telescope-fzf-native") end,
-        run = "make"
-    }
+    -- use {
+    --     "LinArcX/telescope-env.nvim",
+    --     lock = true,
+    --     after = "telescope.nvim",
+    --     config = function() require("config.telescope-env") end
+    -- }
+    -- use {
+    --     "nvim-telescope/telescope-fzf-native.nvim",
+    --     lock = true,
+    --     after = "telescope.nvim",
+    --     config = function() require("config.telescope-fzf-native") end,
+    --     run = "make"
+    -- }
     -- }}}
 
     -- LSP {{{
@@ -126,7 +137,7 @@ return require("packer").startup(function()
     -- https://github.com/neovim/nvim-lspconfig
     use {
         "neovim/nvim-lspconfig",
-        -- event = "BufWinEnter",
+        lock = true,
         config = function() require("config.nvim-lspconfig") end,
     }
 
@@ -155,6 +166,7 @@ return require("packer").startup(function()
     -- https://puremourning.github.io/vimspector/configuration.html
     use {
         "puremourning/vimspector",
+        lock = true,
         ft = "python",
         config = function()
             vim.cmd [[let g:vimspector_enable_mappings = 'HUMAN' ]]
@@ -171,6 +183,7 @@ return require("packer").startup(function()
     -- https://github.com/iamcco/markdown-preview.nvim
     use {
         "iamcco/markdown-preview.nvim",
+        lock = true,
         ft = "markdown",
         run = ":call mkdp#util#install()",
         setup = function()
@@ -194,10 +207,10 @@ return require("packer").startup(function()
     }
 
     -- https://github.com/mechatroner/rainbow_csv
-    use { "mechatroner/rainbow_csv", ft = "csv" }
+    use { "mechatroner/rainbow_csv", lock = true, ft = "csv" }
 
     -- https://github.com/Glench/Vim-Jinja2-Syntax
-    use { "Glench/Vim-Jinja2-Syntax", ft = { "jinja", "jinja.html" } }
+    use { "Glench/Vim-Jinja2-Syntax", lock = true, ft = { "jinja", "jinja.html" } }
 
     -- }}}
 
@@ -207,6 +220,7 @@ return require("packer").startup(function()
     -- (Better syntax highlighting)
     use {
         "nvim-treesitter/nvim-treesitter",
+        lock = true,
         event = "BufWinEnter",
         run = function()
             vim.cmd(":TSUpdate")
@@ -221,11 +235,12 @@ return require("packer").startup(function()
     }
 
     -- https://github.com/MattesGroeger/vim-bookmarks
-    use { "MattesGroeger/vim-bookmarks", event = "BufWinEnter" }
+    use { "MattesGroeger/vim-bookmarks", lock = true, event = "BufWinEnter" }
 
     -- https://github.com/folke/trouble.nvim
     use {
         "folke/trouble.nvim",
+        lock = true,
         event = "BufWinEnter",
         requires = {
             -- https://github.com/kyazdani42/nvim-web-devicons
